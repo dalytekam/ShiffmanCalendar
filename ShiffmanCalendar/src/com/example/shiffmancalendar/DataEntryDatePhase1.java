@@ -2,6 +2,7 @@ package com.example.shiffmancalendar;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -38,7 +39,7 @@ public class DataEntryDatePhase1 extends Activity {
 		date = intent.getLongExtra("date", 0);
 		Calendar cal = Calendar.getInstance();
 		cal.setTimeInMillis(date);
-		SimpleDateFormat format1 = new SimpleDateFormat("EEE, d MMM yyyy");
+		SimpleDateFormat format1 = new SimpleDateFormat("EEE, d MMM yyyy", Locale.US);
 		String formatted = format1.format(cal.getTime());
 		
 		title.setText(title.getText() + "\n" + formatted);
