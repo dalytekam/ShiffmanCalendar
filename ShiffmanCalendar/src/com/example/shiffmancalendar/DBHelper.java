@@ -19,16 +19,18 @@ public class DBHelper extends SQLiteOpenHelper {
 	
 	private static final String TABLE_NAME = "calendarData";
 	
-	private static final String KEY_ID = "id";
-	private static final String KEY_CIG_COUNT = "cig_count";
-	private static final String KEY_OTHER_NICOTINE = "other_nicotine";
+	public static final String KEY_ID = "id";
+	public static final String KEY_DATE = "date";
+	public static final String KEY_CIG_COUNT = "cig_count";
+	public static final String KEY_OTHER_NICOTINE = "other_nicotine";
 	
 	private static final String CREATE_TABLE_PHASE_1 = "CREATE TABLE " + TABLE_NAME + "("
-            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_CIG_COUNT + " INTEGER" + ")";
+            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_DATE + " INTEGER," + KEY_CIG_COUNT + " INTEGER" + ")";
 	private static final String CREATE_TABLE_PHASE_2 = "CREATE TABLE " + TABLE_NAME + "("
-            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_CIG_COUNT + " INTEGER," + KEY_OTHER_NICOTINE + " INTEGER" + ")";
+            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_DATE + " INTEGER," + KEY_CIG_COUNT 
+            + " INTEGER," + KEY_OTHER_NICOTINE + " INTEGER" + ")";
 	private static final String CREATE_TABLE_PHASE_3 = "CREATE TABLE " + TABLE_NAME + "("
-            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_CIG_COUNT + " INTEGER" + ")";
+            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_DATE + " INTEGER," + KEY_CIG_COUNT + " INTEGER" + ")";
 	
 	SharedPreferences prefs;
 	
