@@ -70,7 +70,7 @@ public class DataEntryDatePhase1 extends Activity {
 				values.put(DBHelper.KEY_CIG_COUNT, cig_count);
 				
 				db.addEntry(values);
-				
+				finish();
 			}
 			
 		});
