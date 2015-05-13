@@ -79,7 +79,7 @@ public class DBHelper extends SQLiteOpenHelper {
         	cursor.moveToFirst();
         	int cols = cursor.getColumnCount();
         	exists = new ContentValues();
-        	for (int i=1; i<cols; i++) {
+        	for (int i=0; i<cols; i++) {
         		exists.put(cursor.getColumnName(i), cursor.getString(i));
         	}
         }
