@@ -131,4 +131,26 @@ public class DBHelper extends SQLiteOpenHelper {
 		return entries;
 	}
 
+	public List<String> getColumns() {
+		List<String> columns = new ArrayList<String>();
+		// Select All Query
+	    String selectQuery = "SELECT  * FROM " + TABLE_NAME;
+	 
+	    SQLiteDatabase db = this.getReadableDatabase();
+	    Cursor cursor = db.rawQuery(selectQuery, null);
+	 
+	    // looping through all rows and adding to list
+	    if (cursor.moveToFirst()) {
+        	int colCount = cursor.getColumnCount();
+        	// skip column 0 cause thats just the id of the row
+        	for (int i=1; i<colCount; i++) {
+        		String key = cursor.getColumnName(i);
+        		columns.add(key);
+        	}
+	    }
+	    db.close();
+	    
+	    return columns;
+	}
+
 }

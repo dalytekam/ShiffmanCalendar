@@ -15,7 +15,9 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.squareup.timessquare.CalendarCellDecorator;
 import com.squareup.timessquare.CalendarPickerView;
@@ -62,6 +64,7 @@ public class DataEntryCalendar extends ActionBarActivity {
 	public static class PlaceholderFragment extends Fragment {
 		CalendarPickerView cal;
 		SharedPreferences prefs;
+		Button viewSummary;
 		
 		public PlaceholderFragment() {
 		}
@@ -82,6 +85,17 @@ public class DataEntryCalendar extends ActionBarActivity {
 			prefs = getActivity().getSharedPreferences("shiffman_calendar", 0);
 			
 			initCal();
+			
+			viewSummary = (Button) getActivity().findViewById(R.id.button2);
+			viewSummary.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					Intent intent = new Intent(getActivity().getApplicationContext(), SummarizeData.class);
+					startActivity(intent);
+				}
+				
+			});
 		}
 
 		private void initCal() {
