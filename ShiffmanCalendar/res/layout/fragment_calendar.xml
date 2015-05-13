@@ -7,24 +7,14 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.shiffmancalendar.Calendar$PlaceholderFragment" >
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button1"
-        android:layout_alignBottom="@+id/button1"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="32dp"
-        android:text="Button" />
     
     <View
         android:id="@+id/horizontal_line"
         android:layout_width="fill_parent"
 		android:layout_height="2dip"
 		android:background="#FF000000"
-		android:layout_marginTop="20dp"
-		android:layout_marginBottom="20dp"
+		android:layout_marginTop="10dp"
+		android:layout_marginBottom="10dp"
 		android:layout_below="@+id/button2" />
     
     <com.squareup.timessquare.CalendarPickerView
@@ -35,13 +25,11 @@
     />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/horizontal_line"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="26dp"
-        android:layout_marginTop="26dp"
-        android:text="Button" />
+        android:layout_centerHorizontal="true"
+        android:text="View Data Summary" />
 
 </RelativeLayout>
