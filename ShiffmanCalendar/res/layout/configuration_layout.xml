@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+<!--     <TextView -->
+<!--     android:id="@+id/config_id_title" -->
+<!--     android:layout_width="wrap_content" -->
+<!--     android:layout_height="wrap_content" -->
+<!--     android:layout_marginTop="20dp" -->
+<!--     android:text="Enter Participant ID:" /> -->
+
+
+<!--     <EditText -->
+<!--     android:id="@+id/config_id_editText" -->
+<!--     android:layout_width="match_parent" -->
+<!--     android:layout_height="wrap_content" -->
+<!--     android:layout_marginBottom="20dp" -->
+<!--     android:ems="10" > -->
+
+
+<!--     <requestFocus /> -->
+<!--     </EditText> -->
+
+
+<!--     <TextView -->
+<!--     android:id="@+id/config_phase_title" -->
+<!--     android:layout_width="wrap_content" -->
+<!--     android:layout_height="wrap_content" -->
+<!--     android:text="Select Study Phase:" /> -->
+
+
+<!--     <Spinner -->
+<!--     android:id="@+id/config_phase_spinner" -->
+<!--     android:layout_width="match_parent" -->
+<!--     android:layout_height="wrap_content" -->
+<!--     android:layout_marginBottom="20dp" -->
+<!--     android:gravity="center" /> -->
+
+
+<!--     <TextView -->
+<!--     android:id="@+id/config_start_title" -->
+<!--     android:layout_width="wrap_content" -->
+<!--     android:layout_height="wrap_content" -->
+<!--     android:text="Select Start Date:" /> -->
+
+
+<!--     <android.widget.DatePicker -->
+<!--     android:id="@+id/config_start_datePicker" -->
+<!--     android:layout_width="wrap_content" -->
+<!--     android:layout_height="wrap_content" -->
+<!--     android:layout_marginBottom="20dp" -->
+<!--     android:calendarViewShown="false" -->
+<!--     android:gravity="center" /> -->
+
+
+<!--     <TextView -->
+<!--     android:id="@+id/config_end_title" -->
+<!--     android:layout_width="wrap_content" -->
+<!--     android:layout_height="wrap_content" -->
+<!--     android:text="Select End Date:" /> -->
+
+
+<!--     <android.widget.DatePicker -->
+<!--     android:id="@+id/config_end_datePicker" -->
+<!--     android:layout_width="wrap_content" -->
+<!--     android:layout_height="wrap_content" -->
+<!--     android:layout_marginBottom="50dp" -->
+<!--     android:calendarViewShown="false" -->
+<!--     android:gravity="center" /> -->
+
+
+    <RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp" >
+
+
+    <Button
+    android:id="@+id/config_cancel"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:text="Cancel" />
+
+
+    <Button
+    android:id="@+id/config_save"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:text="Save" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+            
+                <TextView
+			    android:id="@+id/config_id_title"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginTop="20dp"
+			    android:textAppearance="?android:attr/textAppearanceLarge"
+			    android:text="Enter Participant ID:" />
+
+
+			    <EditText
+			    android:id="@+id/config_id_editText"
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:layout_marginBottom="20dp"
+			    android:ems="10" >
+
+
+			    <requestFocus />
+			    </EditText>
+
+
+			    <TextView
+			    android:id="@+id/config_phase_title"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:textAppearance="?android:attr/textAppearanceLarge"
+			    android:text="Select Study Phase:" />
+			
+			
+			    <Spinner
+			    android:id="@+id/config_phase_spinner"
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:layout_marginBottom="20dp"
+			    android:gravity="center" />
+			
+			
+			    <TextView
+			    android:id="@+id/config_start_title"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:textAppearance="?android:attr/textAppearanceLarge"
+			    android:text="Select Start Date:" />
+			
+			
+			    <android.widget.DatePicker
+			    android:id="@+id/config_start_datePicker"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginBottom="1dp"
+			    android:calendarViewShown="false"
+			    android:gravity="center" />
+			
+			
+			    <TextView
+			    android:id="@+id/config_end_title"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:textAppearance="?android:attr/textAppearanceLarge"
+			    android:text="Select End Date:" />
+			
+			
+			    <android.widget.DatePicker
+			    android:id="@+id/config_end_datePicker"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginBottom="1dp"
+			    android:calendarViewShown="false"
+			    android:gravity="center" />
+            
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
