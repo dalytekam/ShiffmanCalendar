@@ -74,7 +74,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		SQLiteDatabase db = this.getReadableDatabase();
 		String countQuery = "SELECT  * FROM " + TABLE_NAME + " WHERE " + KEY_DATE + "= ?";
         Cursor cursor = db.rawQuery(countQuery, new String[] { Long.toString(date) });
-        db.close();
+        
         if (cursor != null && cursor.getCount() != 0) {
         	cursor.moveToFirst();
         	int cols = cursor.getColumnCount();
@@ -83,7 +83,7 @@ public class DBHelper extends SQLiteOpenHelper {
         		exists.put(cursor.getColumnName(i), cursor.getString(i));
         	}
         }
-		
+        db.close();
 		return exists;
 	}
 	
