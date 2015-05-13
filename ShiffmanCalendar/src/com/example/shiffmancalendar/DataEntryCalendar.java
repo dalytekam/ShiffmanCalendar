@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -13,7 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.squareup.timessquare.CalendarCellDecorator;
 import com.squareup.timessquare.CalendarPickerView;
@@ -59,6 +60,7 @@ public class DataEntryCalendar extends ActionBarActivity {
 	 */
 	public static class PlaceholderFragment extends Fragment {
 		CalendarPickerView cal;
+		SharedPreferences prefs;
 		
 		public PlaceholderFragment() {
 		}
@@ -75,6 +77,9 @@ public class DataEntryCalendar extends ActionBarActivity {
 		public void onViewCreated(View view, Bundle savedInstanceState) {
 			// TODO Auto-generated method stub
 			super.onViewCreated(view, savedInstanceState);
+			
+			prefs = getActivity().getSharedPreferences("shiffman_calendar", 0);
+			
 			initCal();
 		}
 
@@ -91,7 +96,17 @@ public class DataEntryCalendar extends ActionBarActivity {
 				@Override
 				public void onDateSelected(Date date) {
 					// TODO Auto-generated method stub
-					Toast.makeText(getActivity().getApplicationContext(), "You clicked a date", Toast.LENGTH_SHORT).show();
+					int phase = prefs.getInt("phase", 1);
+					Intent intent;
+					if (phase == 1) {
+						intent = new Intent(getActivity().getApplicationContext(), DataEntryDatePhase1.class);
+					} else if (phase == 2) {
+						intent = new Intent(getActivity().getApplicationContext(), DataEntryDatePhase2.class);
+					} else {
+						intent = new Intent(getActivity().getApplicationContext(), DataEntryDatePhase3.class);
+					}
+					intent.putExtra("date", date.getTime());
+					startActivity(intent);
 				}
 
 				@Override
