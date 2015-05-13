@@ -118,6 +118,7 @@ public class DataEntryCalendar extends ActionBarActivity {
 			});
 			List<CalendarCellDecorator> decorators = new ArrayList();
 			decorators.add(new DateEnteredDecorator());
+			decorators.add(new HolidayDecorator());
 			cal.setDecorators(decorators);
 		}
 	}
