@@ -86,10 +86,12 @@ public class DataEntryCalendar extends ActionBarActivity {
 
 		private void initCal() {
 			cal = (CalendarPickerView)getView().findViewById(R.id.calendar_view);
+			long start = prefs.getLong("start", System.currentTimeMillis());
+			long end = prefs.getLong("end", System.currentTimeMillis());
 			Calendar minDate = Calendar.getInstance();
-			minDate.set(2015, 3, 15);
+			minDate.setTimeInMillis(start);
 			Calendar maxDate = Calendar.getInstance();
-			maxDate.set(2015, 5, 15);
+			maxDate.setTimeInMillis(end);
 
 			cal.init(minDate.getTime(), maxDate.getTime());
 			cal.setOnDateSelectedListener(new OnDateSelectedListener() {
