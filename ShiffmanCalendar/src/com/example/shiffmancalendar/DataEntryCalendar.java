@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -105,6 +106,7 @@ public class DataEntryCalendar extends ActionBarActivity {
 					} else {
 						intent = new Intent(getActivity().getApplicationContext(), DataEntryDatePhase3.class);
 					}
+					Log.d("DataEntryCalendar", "date: " + date.getTime());
 					intent.putExtra("date", date.getTime());
 					startActivity(intent);
 				}

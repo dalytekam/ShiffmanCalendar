@@ -15,14 +15,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class DataEntryDatePhase1 extends Activity {
+public class DataEntryDatePhase1 extends DataEntryDate {
 	
 	TextView title;
 	EditText cigs;
 	Button cancel;
 	Button save;
-	
-	long date = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +33,11 @@ public class DataEntryDatePhase1 extends Activity {
 		cancel = (Button) findViewById(R.id.cancel_button);
 		save = (Button) findViewById(R.id.save_button);
 		
-		Intent intent = getIntent();
-		date = intent.getLongExtra("date", 0);
-		Calendar cal = Calendar.getInstance();
-		cal.setTimeInMillis(date);
-		SimpleDateFormat format1 = new SimpleDateFormat("EEE, d MMM yyyy", Locale.US);
-		String formatted = format1.format(cal.getTime());
+		title.setText(title.getText() + "\n" + super.formattedDate);
 		
-		title.setText(title.getText() + "\n" + formatted);
+		if (super.existingData != null) {
+			cigs.setText(super.existingData.getAsString(DBHelper.KEY_CIG_COUNT));
+		}
 		
 		cancel.setOnClickListener(new OnClickListener() {
 
@@ -64,12 +59,10 @@ public class DataEntryDatePhase1 extends Activity {
 				}
 				
 				ContentValues values = new ContentValues();
-				DBHelper db = new DBHelper(getApplicationContext());
-				
 				values.put(DBHelper.KEY_DATE, date);
 				values.put(DBHelper.KEY_CIG_COUNT, cig_count);
 				
-				db.addEntry(values);
+				saveOrUpdateEntry(values);
 				finish();
 			}
 			

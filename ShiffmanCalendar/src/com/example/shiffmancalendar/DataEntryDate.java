@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 public class DataEntryDate extends Activity {
 	
@@ -29,13 +30,15 @@ public class DataEntryDate extends Activity {
 		
 		DBHelper db = new DBHelper(getApplicationContext());
 		existingData = db.entryExists(date);
+		Log.d("DataEntryDate", "existing data: " + existingData);
 	}
 	
 	protected void saveOrUpdateEntry(ContentValues values) {
 		DBHelper db = new DBHelper(getApplicationContext());
-		
+		Log.d("DataEntryDate save", "entered");
 		if (existingData == null) {
 			db.addEntry(values);
+			Log.d("DataEntryDate save", "new entry " + values);
 		} else {
 			db.updateEntry(values, existingData.getAsString(DBHelper.KEY_ID));
 		}
