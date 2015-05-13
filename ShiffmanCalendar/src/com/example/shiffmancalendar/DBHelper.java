@@ -68,6 +68,25 @@ public class DBHelper extends SQLiteOpenHelper {
 	
 	// CRUD OPERATIONS BELOW
 	
+	public ContentValues entryExists(long date) {
+		ContentValues exists = null;
+		
+		SQLiteDatabase db = this.getReadableDatabase();
+		String countQuery = "SELECT  * FROM " + TABLE_NAME + " WHERE " + KEY_DATE + "= ?";
+        Cursor cursor = db.rawQuery(countQuery, new String[] { Long.toString(date) });
+        db.close();
+        if (cursor != null && cursor.getCount() != 0) {
+        	cursor.moveToFirst();
+        	int cols = cursor.getColumnCount();
+        	exists = new ContentValues();
+        	for (int i=1; i<cols; i++) {
+        		exists.put(cursor.getColumnName(i), cursor.getString(i));
+        	}
+        }
+		
+		return exists;
+	}
+	
 	public void addEntry(ContentValues values) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		 
