@@ -97,11 +97,11 @@ public class DataEntryCalendar extends ActionBarActivity {
 				@Override
 				public void onDateSelected(Date date) {
 					// TODO Auto-generated method stub
-					int phase = prefs.getInt("phase", 1);
+					int phase = prefs.getInt("phase", 0);
 					Intent intent;
-					if (phase == 1) {
+					if (phase == 0) {
 						intent = new Intent(getActivity().getApplicationContext(), DataEntryDatePhase1.class);
-					} else if (phase == 2) {
+					} else if (phase == 1) {
 						intent = new Intent(getActivity().getApplicationContext(), DataEntryDatePhase2.class);
 					} else {
 						intent = new Intent(getActivity().getApplicationContext(), DataEntryDatePhase3.class);

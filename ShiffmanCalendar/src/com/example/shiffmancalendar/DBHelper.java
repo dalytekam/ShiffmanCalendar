@@ -42,15 +42,15 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		int phase = prefs.getInt("phase", 1);
+		int phase = prefs.getInt("phase", 0);
 		switch (phase) {
-		case 1:
+		case 0:
 			db.execSQL(CREATE_TABLE_PHASE_1);
 			break;
-		case 2:
+		case 1:
 			db.execSQL(CREATE_TABLE_PHASE_2);
 			break;
-		case 3:
+		case 2:
 			db.execSQL(CREATE_TABLE_PHASE_3);
 			break;
 		default:
