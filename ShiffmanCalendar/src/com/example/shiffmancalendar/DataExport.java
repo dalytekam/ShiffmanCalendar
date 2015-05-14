@@ -1,7 +1,195 @@
 package com.example.shiffmancalendar;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
+
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.os.Bundle;
+import android.os.Environment;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 public class DataExport extends Activity {
 
+	ProgressBar progress;
+	TextView text;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		
+		setContentView(R.layout.exportdata_layout);
+		progress = (ProgressBar) findViewById(R.id.progressBar1);
+		text = (TextView) findViewById(R.id.textView1);
+		
+		SharedPreferences prefs = getSharedPreferences("shiffman_calendar", 0);
+		String id = prefs.getString("id", "unknown");
+		long start = prefs.getLong("start", System.currentTimeMillis());
+		long end = prefs.getLong("end", System.currentTimeMillis());
+		int phase = prefs.getInt("phase", -1);
+		
+		printToScreen(printMetaData(id, start, end, phase));
+		
+		printToScreen("Loading data...");
+		DBHelper db = new DBHelper(this);
+		List<ContentValues> data = db.getAllEntries();
+		List<String> columns = db.getColumns();
+		
+		printToScreen("Generating CSV file...");
+		
+		printToScreen("Building text...");
+		String csvText = generateCSVText(data, columns);
+		
+		printToScreen("Writing to file...");
+		File output = generateFile(id, start, end, phase);
+		String filename = output.getName();
+		String success = writeToCSV(csvText, output);
+		
+		if (success.equalsIgnoreCase("success")) {
+			printToScreen("SUCCESS: " + filename);
+		} else {
+			printToScreen("ERROR: " + filename + ", please try again.");
+		}
+		
+		progress.setIndeterminate(false); // stop the continuous spinning
+		showDialogBox(success, output.getAbsolutePath());
+	}
+
+	private void showDialogBox(String success, String filename) {
+		String title;
+		String msg;
+		if (success.equalsIgnoreCase("success")) {
+			title = "Data Export: SUCCESS";
+			msg = "Saved data to: " + filename;
+		} else {
+			title = "Data Export: FAILURE!!!";
+			msg = success;
+		}
+		
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Save Participant Configuration?").setMessage("You will lose any un-exported data!!!!")
+               .setPositiveButton("Yes, save", new DialogInterface.OnClickListener() {
+                   public void onClick(DialogInterface dialog, int id) {
+	    				finish();
+                   }
+               });
+
+        // Create the AlertDialog object and return it
+        AlertDialog dialog = builder.create();
+        dialog.show();
+	}
+
+	private String writeToCSV(String csvText, File output) {
+		String success = "success";
+		output.mkdirs();
+		FileOutputStream outputStream;
+
+
+		  try {
+			outputStream = new FileOutputStream(output);
+			outputStream.write(csvText.getBytes());
+			outputStream.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			success = "Couldn't create the file. Check that the tablet is not plugged into a computer.";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			success = "Failed while writing file, Please try again.";
+		}
+		  
+
+		return success;
+	}
+
+	private File generateFile(String id, long start, long end, int phase) {
+		Calendar c = Calendar.getInstance();
+		SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+		String formattedDate = df.format(c.getTime());
+		String filename = id + "_" + formattedDate + ".csv";
+		
+		return new File(new File(Environment.getExternalStorageDirectory(), "SHIFFMANCAL"), filename);
+	}
+
+	private String generateCSVText(List<ContentValues> data, List<String> columns) {
+		StringBuilder sb = new StringBuilder();
+		
+		// add header
+		for(String col: columns) {
+			sb.append(col).append(",");
+		}
+		sb.setLength(sb.length() - 1);
+		sb.append("\n");
+		
+		// add data
+		for (ContentValues values: data) {
+			for (String col: columns) {
+				if (col.equalsIgnoreCase("date")) {
+    				long date = values.getAsLong(col);
+    				Calendar cal = Calendar.getInstance();
+    				cal.setTimeInMillis(date);
+    				SimpleDateFormat format1 = new SimpleDateFormat("EEE, d MMM yyyy", Locale.US);
+    				sb.append(format1.format(cal.getTime()));
+    			} else {
+    				sb.append(values.getAsString(col));
+    			}
+				sb.append(",");
+			}
+			sb.setLength(sb.length() - 1);
+			sb.append("\n");
+		}
+		
+		return sb.toString();
+	}
+
+	private String printMetaData(String id, long start, long end, int phase) {
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("Participant: ").append(id).append("\n");
+		
+		String phaseStr;
+		if (phase == -1) {
+			phaseStr = "Phase: Unknown?";
+		} else {
+			phase += 1;
+			phaseStr = "Phase: " + phase;
+		}
+		sb.append(phaseStr).append("\n");
+		
+		Calendar cal = Calendar.getInstance();
+		cal.setTimeInMillis(start);
+		SimpleDateFormat format1 = new SimpleDateFormat("MMM dd yyyy", Locale.US);
+		String startStr = format1.format(cal.getTime());
+		cal.setTimeInMillis(end);
+		String endStr = format1.format(cal.getTime());
+		sb.append(startStr).append(" to ").append(endStr).append("\n\n");
+		
+		return sb.toString();
+	}
+	
+	private void printToScreen(String str) {
+		String curr = text.getText().toString();
+		
+		if (curr.equalsIgnoreCase("")) {
+			curr = str;
+		} else {
+			curr += "\n" + str;
+		}
+		text.setText(curr);
+		
+	}
 }
