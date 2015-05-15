@@ -24,6 +24,24 @@ public class HolidayDecorator implements CalendarCellDecorator {
 		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
 		String dateStr = format.format(date);
 		
+		long start = prefs.getLong("start", System.currentTimeMillis());
+		long end = prefs.getLong("end", System.currentTimeMillis());
+		Calendar c = Calendar.getInstance();
+		int year = c.get(Calendar.YEAR);
+		int month = c.get(Calendar.MONTH);
+		int day = c.get(Calendar.DAY_OF_MONTH);
+		c.clear();
+		c.set(year, month, day);
+		Date currDate = c.getTime();
+		c.setTimeInMillis(start);
+		Date startDate = c.getTime();
+		c.setTimeInMillis(end);
+		Date endDate = c.getTime();
+		
+		if (date.before(startDate) || date.after(endDate)) {
+			return;
+		}
+		
 		if (holidays == null) {
 			return;
 		}
@@ -43,6 +61,13 @@ public class HolidayDecorator implements CalendarCellDecorator {
 		        Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
 		    cellView.setText(string);
 		    cellView.setTextColor(Color.BLUE);
+		} else {
+			//System.out.println(cellView.getTextColors().toString());
+			if (date.equals(currDate)) {
+				cellView.setTextColor(Color.WHITE);
+			} else {
+				cellView.setTextColor(-8945528);
+			}
 		}
 	}
 

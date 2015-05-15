@@ -41,6 +41,8 @@ public class ConfigureHolidays extends Activity {
 		
 		prefs = getSharedPreferences("shiffman_calendar", 0);
 		edit = prefs.edit();
+		edit.remove("holidays");
+		edit.commit();
 		
 		text = (EditText) findViewById(R.id.holiday_editText);
 		cal = (CalendarPickerView) findViewById(R.id.holiday_calendar_view);
@@ -76,6 +78,7 @@ public class ConfigureHolidays extends Activity {
 				if (lastDate != null) {
 					saveHolidayText(lastDate);
 				}
+				text.setText("");
 				lastDate = date;
 				String dateStr = format.format(date);
 				for (String label : holidays) {
