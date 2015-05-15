@@ -80,8 +80,8 @@ public class DataExport extends Activity {
 		}
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Save Participant Configuration?").setMessage("You will lose any un-exported data!!!!")
-               .setPositiveButton("Yes, save", new DialogInterface.OnClickListener() {
+        builder.setTitle(title).setMessage(msg)
+               .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                    public void onClick(DialogInterface dialog, int id) {
 	    				finish();
                    }
@@ -94,7 +94,6 @@ public class DataExport extends Activity {
 
 	private String writeToCSV(String csvText, File output) {
 		String success = "success";
-		output.mkdirs();
 		FileOutputStream outputStream;
 
 
@@ -118,11 +117,12 @@ public class DataExport extends Activity {
 
 	private File generateFile(String id, long start, long end, int phase) {
 		Calendar c = Calendar.getInstance();
-		SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+		SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy_h-m-s");
 		String formattedDate = df.format(c.getTime());
 		String filename = id + "_" + formattedDate + ".csv";
-		
-		return new File(new File(Environment.getExternalStorageDirectory(), "SHIFFMANCAL"), filename);
+		File dir = new File(Environment.getExternalStorageDirectory(), "SHIFFMANCAL");
+		dir.mkdir();
+		return new File(dir, filename);
 	}
 
 	private String generateCSVText(List<ContentValues> data, List<String> columns) {
@@ -142,7 +142,7 @@ public class DataExport extends Activity {
     				long date = values.getAsLong(col);
     				Calendar cal = Calendar.getInstance();
     				cal.setTimeInMillis(date);
-    				SimpleDateFormat format1 = new SimpleDateFormat("EEE, d MMM yyyy", Locale.US);
+    				SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
     				sb.append(format1.format(cal.getTime()));
     			} else {
     				sb.append(values.getAsString(col));
