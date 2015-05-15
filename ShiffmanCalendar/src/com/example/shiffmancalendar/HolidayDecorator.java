@@ -1,8 +1,12 @@
 package com.example.shiffmancalendar;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
+import java.util.Set;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -15,22 +19,26 @@ public class HolidayDecorator implements CalendarCellDecorator {
 
 	@Override
 	public void decorate(CalendarCellView cellView, Date date) {
-		String dateString = Integer.toString(date.getDate());
-		Calendar comp = Calendar.getInstance();
-		comp.clear();
-		comp.set(2015, 4, 15, 0, 0, 0);
-		if (date.getDate() == 15 && date.getMonth() == 4) {
-		System.out.println("DATE STRING: " + date.getTime());
-		System.out.println("DATE STRING: " + comp.getTime().getTime());
+		SharedPreferences prefs = cellView.getContext().getSharedPreferences("shiffman_calendar", 0);
+		Set<String> holidays = prefs.getStringSet("holidays", null);
+		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+		String dateStr = format.format(date);
+		
+		String holiday = null;
+		for (String h: holidays) {
+			String[] parts = h.split(":");
+			if (dateStr.equalsIgnoreCase(parts[0])) {
+				holiday = parts[1];
+			}
 		}
-		if (date.equals(comp.getTime())) {
-		    SpannableString string = new SpannableString(dateString + "\ndone");
+		if (holiday != null) {
+			// decorate!
+			String dateString = Integer.toString(date.getDate());
+			SpannableString string = new SpannableString(dateString + "\n" + holiday);
 		    string.setSpan(new RelativeSizeSpan(0.5f), 0, dateString.length(),
 		        Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
 		    cellView.setText(string);
-		    cellView.setBackgroundColor(Color.GREEN);
-		} else {
-			//System.out.println("DATE STRING: no match");
+		    cellView.setTextColor(Color.BLUE);
 		}
 	}
 
