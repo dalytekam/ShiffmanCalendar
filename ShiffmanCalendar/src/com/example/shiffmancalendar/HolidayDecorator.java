@@ -24,6 +24,10 @@ public class HolidayDecorator implements CalendarCellDecorator {
 		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
 		String dateStr = format.format(date);
 		
+		if (holidays == null) {
+			return;
+		}
+		
 		String holiday = null;
 		for (String h: holidays) {
 			String[] parts = h.split(":");
