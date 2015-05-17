@@ -16,7 +16,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.example.shiffmancalendar.DataEntryCalendar"
-            android:label="SC Enter Data" >
+            android:label="SC EnterData"
+            android:icon="@drawable/icon_calendar_app">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,7 +26,8 @@
         </activity>
         <activity
             android:name="com.example.shiffmancalendar.Configuration"
-            android:label="SC Configure User" >
+            android:label="SC UserConfig"
+            android:icon="@drawable/icon_config_user">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,7 +36,8 @@
         </activity>
         <activity
             android:name="com.example.shiffmancalendar.ConfigureHolidays"
-            android:label="SC Configure Holidays" >
+            android:label="SC HolidayConfig"
+            android:icon="@drawable/icon_holiday_config" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,7 +46,8 @@
         </activity>
         <activity
             android:name="com.example.shiffmancalendar.DataExport"
-            android:label="SC Export Data" >
+            android:label="SC ExportData"
+            android:icon="@drawable/icon_export_data" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
