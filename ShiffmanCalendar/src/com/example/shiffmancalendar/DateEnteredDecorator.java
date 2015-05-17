@@ -22,7 +22,7 @@ public class DateEnteredDecorator implements CalendarCellDecorator {
 		ContentValues value = db.entryExists(date.getTime());
 		
 		if (value != null) {
-			cellView.setBackgroundColor(Color.GREEN);
+			cellView.setBackgroundColor(cellView.getResources().getColor(R.color.LightGreen));
 		}
 	
 	}

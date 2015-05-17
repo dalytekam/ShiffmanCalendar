@@ -60,7 +60,7 @@ public class HolidayDecorator implements CalendarCellDecorator {
 		    string.setSpan(new RelativeSizeSpan(0.5f), 0, dateString.length(),
 		        Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
 		    cellView.setText(string);
-		    cellView.setTextColor(Color.BLUE);
+		    cellView.setTextColor(cellView.getResources().getColor(R.color.LightBlue));
 		} else {
 			//System.out.println(cellView.getTextColors().toString());
 			if (date.equals(currDate)) {
