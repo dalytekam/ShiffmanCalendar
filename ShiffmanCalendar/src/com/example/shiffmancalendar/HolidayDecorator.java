@@ -42,15 +42,17 @@ public class HolidayDecorator implements CalendarCellDecorator {
 //			return;
 //		}
 		
-		if (holidays == null) {
-			return;
-		}
+//		if (holidays == null) {
+//			return;
+//		}
 		
 		String holiday = null;
-		for (String h: holidays) {
-			String[] parts = h.split(":");
-			if (dateStr.equalsIgnoreCase(parts[0])) {
-				holiday = parts[1];
+		if (holidays != null) {
+			for (String h: holidays) {
+				String[] parts = h.split(":");
+				if (dateStr.equalsIgnoreCase(parts[0])) {
+					holiday = parts[1];
+				}
 			}
 		}
 		if (holiday != null) {
@@ -62,7 +64,8 @@ public class HolidayDecorator implements CalendarCellDecorator {
 		    cellView.setText(string);
 		    cellView.setTextColor(cellView.getResources().getColor(R.color.LightBlue));
 		} else {
-			if (date.before(startDate) || date.after(endDate)) {
+			if ((date.before(startDate) || date.after(endDate)) && !date.equals(currDate)) {
+				cellView.setTextColor(2138538120);
 				return;
 			}
 			//System.out.println(cellView.getTextColors().toString());

@@ -43,6 +43,8 @@ public class ConfigureHolidays extends Activity {
 		prefs = getSharedPreferences("shiffman_calendar", 0);
 		edit = prefs.edit();
 		
+		holidays = prefs.getStringSet("holidays", new HashSet<String>());
+		
 		text = (EditText) findViewById(R.id.holiday_editText);
 		cal = (CalendarPickerView) findViewById(R.id.holiday_calendar_view);
 		save = (Button) findViewById(R.id.holiday_save);
@@ -54,6 +56,11 @@ public class ConfigureHolidays extends Activity {
 			public void onClick(View v) {
 				edit.remove("holidays");
 				edit.commit();
+				holidays = new HashSet<String>();
+				Calendar hack = Calendar.getInstance();
+				hack.set(Calendar.DAY_OF_MONTH, 1);
+				cal.selectDate(hack.getTime());
+
 			}
 			
 		});
@@ -116,7 +123,7 @@ public class ConfigureHolidays extends Activity {
 		decorators.add(new HolidayDecorator());
 		cal.setDecorators(decorators);
 	}
-	
+
 	private void saveHolidayText(Date date) {
 		String label = text.getText().toString();
 		String dateStr = format.format(date);
