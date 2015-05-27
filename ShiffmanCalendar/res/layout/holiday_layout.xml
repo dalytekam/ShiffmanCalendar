@@ -11,14 +11,27 @@
         android:text="Select dates below (one at a time) and label them with holiday names.\nWhen you are done click Save."
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp">
+    <Button
+        android:id="@+id/holiday_clear"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clear All"
+        android:layout_alignParentLeft="true" />
+
     <Button
         android:id="@+id/holiday_save"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save"
-        android:layout_gravity="right" />
-
+        android:layout_alignParentRight="true" />
+	</RelativeLayout>
+	
     <EditText
         android:id="@+id/holiday_editText"
         android:layout_width="match_parent"

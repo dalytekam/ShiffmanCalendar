@@ -27,6 +27,7 @@ public class ConfigureHolidays extends Activity {
 	EditText text;
 	CalendarPickerView cal;
 	Button save;
+	Button clear;
 	Date lastDate = null;
 	SharedPreferences prefs;
 	Editor edit;
@@ -41,12 +42,21 @@ public class ConfigureHolidays extends Activity {
 		
 		prefs = getSharedPreferences("shiffman_calendar", 0);
 		edit = prefs.edit();
-		edit.remove("holidays");
-		edit.commit();
 		
 		text = (EditText) findViewById(R.id.holiday_editText);
 		cal = (CalendarPickerView) findViewById(R.id.holiday_calendar_view);
 		save = (Button) findViewById(R.id.holiday_save);
+		clear = (Button) findViewById(R.id.holiday_clear);
+		
+		clear.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				edit.remove("holidays");
+				edit.commit();
+			}
+			
+		});
 		
 		save.setOnClickListener(new OnClickListener() {
 
