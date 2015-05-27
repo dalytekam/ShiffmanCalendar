@@ -38,9 +38,9 @@ public class HolidayDecorator implements CalendarCellDecorator {
 		c.setTimeInMillis(end);
 		Date endDate = c.getTime();
 		
-		if (date.before(startDate) || date.after(endDate)) {
-			return;
-		}
+//		if (date.before(startDate) || date.after(endDate)) {
+//			return;
+//		}
 		
 		if (holidays == null) {
 			return;
@@ -62,6 +62,9 @@ public class HolidayDecorator implements CalendarCellDecorator {
 		    cellView.setText(string);
 		    cellView.setTextColor(cellView.getResources().getColor(R.color.LightBlue));
 		} else {
+			if (date.before(startDate) || date.after(endDate)) {
+				return;
+			}
 			//System.out.println(cellView.getTextColors().toString());
 			if (date.equals(currDate)) {
 				cellView.setTextColor(Color.WHITE);

@@ -66,8 +66,11 @@ public class ConfigureHolidays extends Activity {
 		Calendar c = Calendar.getInstance();
 		c.clear();
 		c.setTimeInMillis(start);
+		c.set(Calendar.DAY_OF_MONTH, 1); // enable selection of the entire month
 		Date startDate = c.getTime();
 		c.setTimeInMillis(end);
+		System.out.println("end of month " + c.getActualMaximum(Calendar.DAY_OF_MONTH));
+		c.set(Calendar.DAY_OF_MONTH, c.getActualMaximum(Calendar.DAY_OF_MONTH) + 1);
 		Date endDate = c.getTime();
 		cal.init(startDate, endDate);
 		

@@ -98,7 +98,7 @@ public class Configuration extends Activity {
 							
 							SharedPreferences prefs = getSharedPreferences("shiffman_calendar", 0);
 							Editor edit = prefs.edit();
-							edit.clear();
+							//edit.clear();
 							edit.putString("id", idText);
 							edit.putInt("phase", phase_num);
 							edit.putLong("start", startDate);
