@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.squareup.timessquare.CalendarCellDecorator;
 import com.squareup.timessquare.CalendarPickerView;
@@ -68,10 +69,20 @@ public class ConfigureHolidays extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				if (lastDate != null) {
-					saveHolidayText(lastDate);
+				Date selected = cal.getSelectedDate();
+				if (selected == null) {
+					Toast.makeText(getApplicationContext(), "Please select a date to save the label with.", Toast.LENGTH_SHORT).show();
+					return;
 				}
-				finish();
+//				String label = text.getText().toString();
+//				if (label.equalsIgnoreCase("")) {
+//					Toast.makeText(getApplicationContext(), "Please enter a label to save.", Toast.LENGTH_SHORT).show();
+//					return;
+//				}
+				
+				saveHolidayText(selected);
+				text.setText("");
+				cal.invalidateViews();
 			}
 			
 		});
@@ -94,16 +105,18 @@ public class ConfigureHolidays extends Activity {
 
 			@Override
 			public void onDateSelected(Date date) {
-				if (lastDate != null) {
-					saveHolidayText(lastDate);
-				}
-				text.setText("");
-				lastDate = date;
+//				if (lastDate != null) {
+//					saveHolidayText(lastDate);
+//				}
+//				text.setText("");
+//				lastDate = date;
 				String dateStr = format.format(date);
 				for (String label : holidays) {
 					String[] parts = label.split(":");
 					if (dateStr.equalsIgnoreCase(parts[0])) {
-						text.setText(parts[1]);
+						if (text.getText().toString().equalsIgnoreCase("")) {
+							text.setText(parts[1]);
+						}
 					}
 				}
 				
@@ -126,15 +139,20 @@ public class ConfigureHolidays extends Activity {
 	private void saveHolidayText(Date date) {
 		String label = text.getText().toString();
 		String dateStr = format.format(date);
+		// remove any existing labels for this date
+		String remove = null;
+		for (String existing : holidays) {
+			String[] parts = existing.split(":");
+			if (dateStr.equalsIgnoreCase(parts[0])) {
+				remove = existing;
+			}
+		}
+		if (remove != null) {
+			holidays.remove(remove);
+		}
+		// add back the non-empty string labels
 		if (!label.equalsIgnoreCase("")) {
 			holidays.add(dateStr + ":" + label);
-		} else {
-			for (String existing : holidays) {
-				String[] parts = existing.split(":");
-				if (dateStr.equalsIgnoreCase(parts[0])) {
-					holidays.remove(existing);
-				}
-			}
 		}
 		edit.putStringSet("holidays", holidays);
 		edit.commit();
