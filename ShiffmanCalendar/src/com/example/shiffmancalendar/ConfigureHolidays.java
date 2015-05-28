@@ -57,9 +57,8 @@ public class ConfigureHolidays extends Activity {
 				edit.remove("holidays");
 				edit.commit();
 				holidays = new HashSet<String>();
-				Calendar hack = Calendar.getInstance();
-				hack.set(Calendar.DAY_OF_MONTH, 1);
-				cal.selectDate(hack.getTime());
+				// force redraw of the view
+				cal.invalidateViews();
 
 			}
 			
