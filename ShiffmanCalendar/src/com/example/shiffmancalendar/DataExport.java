@@ -85,7 +85,8 @@ public class DataExport extends Activity {
                    public void onClick(DialogInterface dialog, int id) {
 	    				finish();
                    }
-               });
+               })
+               .setCancelable(false);
 
         // Create the AlertDialog object and return it
         AlertDialog dialog = builder.create();
