@@ -8,24 +8,44 @@ import java.util.Locale;
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 public class SummarizeData extends Activity {
 
+	TableLayout table;
+	Button export;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		
-		TableLayout table = new TableLayout(this);
-		table.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-		setContentView(table);
+//		TableLayout table = new TableLayout(this);
+//		table.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+		setContentView(R.layout.summarize_layout);
+		table = (TableLayout) findViewById(R.id.summary_table);
+		export = (Button) findViewById(R.id.summary_button);
+		
+		export.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getApplicationContext(), DataExport.class);
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivity(intent);
+				
+			}
+			
+		});
 		
 		DBHelper db = new DBHelper(this);
 		List<ContentValues> data = db.getAllEntries();
@@ -58,7 +78,7 @@ public class SummarizeData extends Activity {
     				long date = value.getAsLong(columnName);
     				Calendar cal = Calendar.getInstance();
     				cal.setTimeInMillis(date);
-    				SimpleDateFormat format1 = new SimpleDateFormat("EEE, d MMM yyyy", Locale.US);
+    				SimpleDateFormat format1 = new SimpleDateFormat("d MMM yyyy", Locale.US);
     				cell.setText(format1.format(cal.getTime()));
     			} else {
     				cell.setText(value.getAsString(columnName));

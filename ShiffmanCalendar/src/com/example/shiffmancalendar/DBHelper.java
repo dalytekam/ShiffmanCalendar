@@ -107,7 +107,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		List<ContentValues> entries = new ArrayList<ContentValues>();
 		
 		// Select All Query
-	    String selectQuery = "SELECT  * FROM " + TABLE_NAME;
+	    String selectQuery = "SELECT  * FROM " + TABLE_NAME + " ORDER BY " + KEY_DATE;
 	 
 	    SQLiteDatabase db = this.getReadableDatabase();
 	    Cursor cursor = db.rawQuery(selectQuery, null);
