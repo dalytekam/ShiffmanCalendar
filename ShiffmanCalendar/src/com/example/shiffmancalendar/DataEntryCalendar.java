@@ -106,6 +106,7 @@ public class DataEntryCalendar extends ActionBarActivity {
 			minDate.setTimeInMillis(start);
 			Calendar maxDate = Calendar.getInstance();
 			maxDate.setTimeInMillis(end);
+			maxDate.add(Calendar.DAY_OF_MONTH, 1);
 
 			cal.init(minDate.getTime(), maxDate.getTime());
 			cal.setOnDateSelectedListener(new OnDateSelectedListener() {
