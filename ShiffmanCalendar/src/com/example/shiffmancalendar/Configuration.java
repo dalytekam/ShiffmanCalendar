@@ -15,13 +15,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 public class Configuration extends Activity {
 
 	EditText id;
-	Spinner phase;
+	//Spinner phase;
+	RadioButton[] phase;
 	DatePicker start;
 	DatePicker end;
 	Button cancel;
@@ -37,17 +39,15 @@ public class Configuration extends Activity {
 		setContentView(R.layout.configuration_layout);
 		
 		id = (EditText) findViewById(R.id.config_id_editText);
-		phase = (Spinner) findViewById(R.id.config_phase_spinner);
+		phase = new RadioButton[3];
+		phase[0] = (RadioButton) findViewById(R.id.config_phase1);
+		phase[1] = (RadioButton) findViewById(R.id.config_phase2);
+		phase[2] = (RadioButton) findViewById(R.id.config_phase3);
 		start = (DatePicker) findViewById(R.id.config_start_datePicker);
 		end = (DatePicker) findViewById(R.id.config_end_datePicker);
 		cancel = (Button) findViewById(R.id.config_cancel);
 		save = (Button) findViewById(R.id.config_save);
 		
-		String[] items = new String[] {"Phase 1","Phase 2","Phase 3"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, items);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        phase.setAdapter(adapter);
-        phase.setSelection(0);
         
         cancel.setOnClickListener(new OnClickListener() {
 
@@ -68,6 +68,12 @@ public class Configuration extends Activity {
 					Toast.makeText(getApplicationContext(), "You forgot to enter a participant id!", Toast.LENGTH_SHORT).show();
 					return;
 				}
+				
+				int phase_checked = getSelectedPhase();
+				if (phase_checked == -1) {
+					Toast.makeText(getApplicationContext(), "You forgot to select a study phase!", Toast.LENGTH_SHORT).show();
+					return;
+				}
 
 				AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		        builder.setTitle("Save Participant Configuration?").setMessage("You will lose any un-exported data!!!!")
@@ -86,7 +92,7 @@ public class Configuration extends Activity {
 
 						private void save_data_to_prefs() {
 							String idText = id.getText().toString();
-							int phase_num = phase.getSelectedItemPosition();
+							int phase_num = getSelectedPhase();
 							Calendar startCal = Calendar.getInstance();
 							startCal.clear();
 							startCal.set(start.getYear(), start.getMonth(), start.getDayOfMonth());
@@ -115,6 +121,16 @@ public class Configuration extends Activity {
 		        // Create the AlertDialog object and return it
 		        AlertDialog dialog = builder.create();
 		        dialog.show();
+			}
+
+			private int getSelectedPhase() {
+				int phase_checked = -1;
+				for (int i=0; i<phase.length; i++) {
+					if (phase[i].isChecked()) {
+						phase_checked = i;
+					}
+				}
+				return phase_checked;
 			}
         	
         });
