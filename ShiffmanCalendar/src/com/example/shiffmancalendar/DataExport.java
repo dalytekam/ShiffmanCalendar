@@ -37,6 +37,7 @@ public class DataExport extends Activity {
 		
 		SharedPreferences prefs = getSharedPreferences("shiffman_calendar", 0);
 		String id = prefs.getString("id", "unknown");
+		String session = prefs.getString("session", "unknown");
 		long start = prefs.getLong("start", System.currentTimeMillis());
 		long end = prefs.getLong("end", System.currentTimeMillis());
 		int phase = prefs.getInt("phase", -1);
@@ -54,7 +55,7 @@ public class DataExport extends Activity {
 		String csvText = generateCSVText(data, columns);
 		
 		printToScreen("Writing to file...");
-		File output = generateFile(id, start, end, phase);
+		File output = generateFile(id, start, end, phase, session);
 		String filename = output.getName();
 		String success = writeToCSV(csvText, output);
 		
@@ -116,11 +117,12 @@ public class DataExport extends Activity {
 		return success;
 	}
 
-	private File generateFile(String id, long start, long end, int phase) {
+	private File generateFile(String id, long start, long end, int phase, String session) {
 		Calendar c = Calendar.getInstance();
 		SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy_h-m-s");
 		String formattedDate = df.format(c.getTime());
-		String filename = id + "_" + formattedDate + ".csv";
+		String[] phases = {"PHASE1", "PHASE2", "PHASE3"};
+		String filename = id + "_" + phases[phase] + "_" + session + "_" + formattedDate + ".csv";
 		File dir = new File(Environment.getExternalStorageDirectory(), "SHIFFMANCAL");
 		dir.mkdir();
 		return new File(dir, filename);
