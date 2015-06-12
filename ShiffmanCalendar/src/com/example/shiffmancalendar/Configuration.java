@@ -22,6 +22,7 @@ import android.widget.Toast;
 public class Configuration extends Activity {
 
 	EditText id;
+	EditText session;
 	//Spinner phase;
 	RadioButton[] phase;
 	DatePicker start;
@@ -39,6 +40,7 @@ public class Configuration extends Activity {
 		setContentView(R.layout.configuration_layout);
 		
 		id = (EditText) findViewById(R.id.config_id_editText);
+		session = (EditText) findViewById(R.id.config_session_editText);
 		phase = new RadioButton[3];
 		phase[0] = (RadioButton) findViewById(R.id.config_phase1);
 		phase[1] = (RadioButton) findViewById(R.id.config_phase2);
@@ -69,6 +71,12 @@ public class Configuration extends Activity {
 					return;
 				}
 				
+				String sessionText = session.getText().toString();
+				if (sessionText.equalsIgnoreCase("")) {
+					Toast.makeText(getApplicationContext(), "You forgot to enter a session number!", Toast.LENGTH_SHORT).show();
+					return;
+				}
+				
 				int phase_checked = getSelectedPhase();
 				if (phase_checked == -1) {
 					Toast.makeText(getApplicationContext(), "You forgot to select a study phase!", Toast.LENGTH_SHORT).show();
@@ -92,6 +100,7 @@ public class Configuration extends Activity {
 
 						private void save_data_to_prefs() {
 							String idText = id.getText().toString();
+							String sessionNum = session.getText().toString();
 							int phase_num = getSelectedPhase();
 							Calendar startCal = Calendar.getInstance();
 							startCal.clear();
@@ -106,6 +115,7 @@ public class Configuration extends Activity {
 							Editor edit = prefs.edit();
 							//edit.clear();
 							edit.putString("id", idText);
+							edit.putString("session", sessionNum);
 							edit.putInt("phase", phase_num);
 							edit.putLong("start", startDate);
 							edit.putLong("end", endDate);
