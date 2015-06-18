@@ -16,6 +16,9 @@ public class DataEntryDate extends Activity {
 	protected long date = 0;
 	protected String formattedDate;
 	protected ContentValues existingData = null;
+	protected String id;
+	protected String study;
+	protected String session;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +33,9 @@ public class DataEntryDate extends Activity {
 		formattedDate = format1.format(cal.getTime());
 		
 		SharedPreferences prefs = getSharedPreferences("shiffman_calendar", 0);
-		String id = prefs.getString("id", "unknown");
-		String session = prefs.getString("session", "unknown");
+		id = prefs.getString("id", "unknown");
+		study = Configuration.phaseNames[prefs.getInt("phase", 0)];
+		session = prefs.getString("session", "unknown");
 		DBHelper db = new DBHelper(getApplicationContext());
 		existingData = db.entryExists(id, session, date);
 		Log.d("DataEntryDate", "existing data: " + existingData);

@@ -30,6 +30,8 @@ public class Configuration extends Activity {
 	Button cancel;
 	Button save;
 	
+	public static final String[] phaseNames = {"PHASE1", "PHASE2", "PHASE3"};
+	
 	Context context;
 	
 	@Override

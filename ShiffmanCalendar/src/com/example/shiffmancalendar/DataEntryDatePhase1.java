@@ -59,6 +59,9 @@ public class DataEntryDatePhase1 extends DataEntryDate {
 				}
 				
 				ContentValues values = new ContentValues();
+				values.put(DBHelper.KEY_PID, id);
+				values.put(DBHelper.KEY_STUDY, study);
+				values.put(DBHelper.KEY_SESSION, session);
 				values.put(DBHelper.KEY_DATE, date);
 				values.put(DBHelper.KEY_CIG_COUNT, cig_count);
 				

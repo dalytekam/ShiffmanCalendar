@@ -121,8 +121,7 @@ public class DataExport extends Activity {
 		Calendar c = Calendar.getInstance();
 		SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy_h-m-s");
 		String formattedDate = df.format(c.getTime());
-		String[] phases = {"PHASE1", "PHASE2", "PHASE3"};
-		String filename = id + "_" + phases[phase] + "_" + session + "_" + formattedDate + ".csv";
+		String filename = id + "_" + Configuration.phaseNames[phase] + "_" + session + "_" + formattedDate + ".csv";
 		File dir = new File(Environment.getExternalStorageDirectory(), "SHIFFMANCAL");
 		dir.mkdir();
 		return new File(dir, filename);
