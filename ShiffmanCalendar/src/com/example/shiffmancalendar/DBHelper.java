@@ -114,7 +114,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		List<ContentValues> entries = new ArrayList<ContentValues>();
 		
 		// Select All Query
-	    String selectQuery = "SELECT  * FROM " + TABLE_NAME + " ORDER BY " + KEY_DATE;
+	    String selectQuery = "SELECT  * FROM " + TABLE_NAME;
 	    String[] vals = null;
 	    if (pid != null && session != null) {
 	    	selectQuery += " WHERE " + KEY_PID + "=? AND " + KEY_SESSION + "=?";
@@ -126,6 +126,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	    	vals = new String[1];
 	    	vals[0] = pid;
 	    }
+	    selectQuery +=  " ORDER BY " + KEY_DATE;
 	 
 	    SQLiteDatabase db = this.getReadableDatabase();
 	    Cursor cursor = db.rawQuery(selectQuery, vals);
