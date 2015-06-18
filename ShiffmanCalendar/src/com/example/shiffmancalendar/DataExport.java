@@ -46,8 +46,8 @@ public class DataExport extends Activity {
 		
 		printToScreen("Loading data...");
 		DBHelper db = new DBHelper(this);
-		List<ContentValues> data = db.getAllEntries();
-		List<String> columns = db.getColumns();
+		List<ContentValues> data = db.getAllEntries(null, null);
+		List<String> columns = db.getColumns(0);
 		
 		printToScreen("Generating CSV file...");
 		
