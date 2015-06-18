@@ -7,6 +7,7 @@ import java.util.Locale;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -28,8 +29,11 @@ public class DataEntryDate extends Activity {
 		SimpleDateFormat format1 = new SimpleDateFormat("EEE, d MMM yyyy", Locale.US);
 		formattedDate = format1.format(cal.getTime());
 		
+		SharedPreferences prefs = getSharedPreferences("shiffman_calendar", 0);
+		String id = prefs.getString("id", "unknown");
+		String session = prefs.getString("session", "unknown");
 		DBHelper db = new DBHelper(getApplicationContext());
-		existingData = db.entryExists(date);
+		existingData = db.entryExists(id, session, date);
 		Log.d("DataEntryDate", "existing data: " + existingData);
 	}
 	
