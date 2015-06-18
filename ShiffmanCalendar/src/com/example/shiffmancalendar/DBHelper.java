@@ -20,17 +20,23 @@ public class DBHelper extends SQLiteOpenHelper {
 	private static final String TABLE_NAME = "calendarData";
 	
 	public static final String KEY_ID = "id";
+	public static final String KEY_PID = "pid";
+	public static final String KEY_STUDY = "study";
+	public static final String KEY_SESSION = "session";
 	public static final String KEY_DATE = "date";
 	public static final String KEY_CIG_COUNT = "cig_count";
 	public static final String KEY_OTHER_NICOTINE = "other_nicotine";
 	
 	private static final String CREATE_TABLE_PHASE_1 = "CREATE TABLE " + TABLE_NAME + "("
-            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_DATE + " INTEGER," + KEY_CIG_COUNT + " INTEGER" + ")";
+            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_PID + " TEXT, " + KEY_STUDY + " TEXT, " + KEY_SESSION + " TEXT, "
+			+ KEY_DATE + " INTEGER," + KEY_CIG_COUNT + " INTEGER" + ")";
 	private static final String CREATE_TABLE_PHASE_2 = "CREATE TABLE " + TABLE_NAME + "("
-            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_DATE + " INTEGER," + KEY_CIG_COUNT 
+            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_PID + " TEXT, " + KEY_STUDY + " TEXT, " + KEY_SESSION + " TEXT, "
+			+ KEY_DATE + " INTEGER," + KEY_CIG_COUNT 
             + " INTEGER," + KEY_OTHER_NICOTINE + " INTEGER" + ")";
 	private static final String CREATE_TABLE_PHASE_3 = "CREATE TABLE " + TABLE_NAME + "("
-            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_DATE + " INTEGER," + KEY_CIG_COUNT + " INTEGER" + ")";
+            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_PID + " TEXT, " + KEY_STUDY + " TEXT, " + KEY_SESSION + " TEXT, "
+			+ KEY_DATE + " INTEGER," + KEY_CIG_COUNT + " INTEGER" + ")";
 	
 	SharedPreferences prefs;
 	
@@ -68,12 +74,13 @@ public class DBHelper extends SQLiteOpenHelper {
 	
 	// CRUD OPERATIONS BELOW
 	
-	public ContentValues entryExists(long date) {
+	public ContentValues entryExists(String pid, String session, long date) {
 		ContentValues exists = null;
 		
 		SQLiteDatabase db = this.getReadableDatabase();
-		String countQuery = "SELECT  * FROM " + TABLE_NAME + " WHERE " + KEY_DATE + "= ?";
-        Cursor cursor = db.rawQuery(countQuery, new String[] { Long.toString(date) });
+		String countQuery = "SELECT  * FROM " + TABLE_NAME + " WHERE " + KEY_PID + "=? AND " + KEY_SESSION + "=? AND " 
+							+ KEY_DATE + "= ?";
+        Cursor cursor = db.rawQuery(countQuery, new String[] { pid, session, Long.toString(date) });
         
         if (cursor != null && cursor.getCount() != 0) {
         	cursor.moveToFirst();
@@ -103,14 +110,25 @@ public class DBHelper extends SQLiteOpenHelper {
 	            new String[] { rowId });
 	}
 	
-	public List<ContentValues> getAllEntries() {
+	public List<ContentValues> getAllEntries(String pid, String session) {
 		List<ContentValues> entries = new ArrayList<ContentValues>();
 		
 		// Select All Query
 	    String selectQuery = "SELECT  * FROM " + TABLE_NAME + " ORDER BY " + KEY_DATE;
+	    String[] vals = null;
+	    if (pid != null && session != null) {
+	    	selectQuery += " WHERE " + KEY_PID + "=? AND " + KEY_SESSION + "=?";
+	    	vals = new String[2];
+	    	vals[0] = pid;
+	    	vals[1] = session;
+	    } else if (pid != null) {
+	    	selectQuery += " WHERE " + KEY_PID + "=?";
+	    	vals = new String[1];
+	    	vals[0] = pid;
+	    }
 	 
 	    SQLiteDatabase db = this.getReadableDatabase();
-	    Cursor cursor = db.rawQuery(selectQuery, null);
+	    Cursor cursor = db.rawQuery(selectQuery, vals);
 	 
 	    // looping through all rows and adding to list
 	    if (cursor.moveToFirst()) {
@@ -131,7 +149,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		return entries;
 	}
 
-	public List<String> getColumns() {
+	public List<String> getColumns(int phase) {
 		List<String> columns = new ArrayList<String>();
 		// Select All Query
 	    String selectQuery = "SELECT  * FROM " + TABLE_NAME;
