@@ -9,6 +9,7 @@ import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -46,10 +47,13 @@ public class SummarizeData extends Activity {
 			}
 			
 		});
+		SharedPreferences prefs = getSharedPreferences("shiffman_calendar", 0);
+		String id = prefs.getString("id", "unknown");
+		String session = prefs.getString("session", "unknown");
 		
 		DBHelper db = new DBHelper(this);
-		List<ContentValues> data = db.getAllEntries();
-		List<String> columns = db.getColumns();
+		List<ContentValues> data = db.getAllEntries(id, session);
+		List<String> columns = db.getColumns(0);
 		
 		TableRow columnRow = new TableRow(this);
 		columnRow.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
