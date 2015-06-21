@@ -51,4 +51,14 @@ public class DataEntryDate extends Activity {
 			db.updateEntry(values, existingData.getAsString(DBHelper.KEY_ID));
 		}
 	}
+	
+	protected ContentValues initContentValues() {
+		ContentValues values = new ContentValues();
+		
+		values.put(DBHelper.KEY_PID, id);
+		values.put(DBHelper.KEY_STUDY, study);
+		values.put(DBHelper.KEY_SESSION, session);
+		
+		return values;
+	}
 }
