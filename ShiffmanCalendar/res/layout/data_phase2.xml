@@ -40,6 +40,25 @@
 
         <requestFocus />
     </EditText>
+    
+    <TextView
+        android:id="@+id/field2Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Number of pieces of gum used:"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:gravity="center" >
+
+        <requestFocus />
+    </EditText>
 
     <RelativeLayout
     	android:layout_width="match_parent"
