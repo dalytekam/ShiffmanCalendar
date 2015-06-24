@@ -57,7 +57,6 @@
         android:inputType="numberDecimal"
         android:gravity="center" >
 
-        <requestFocus />
     </EditText>
 
     <RelativeLayout
