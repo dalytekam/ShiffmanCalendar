@@ -25,7 +25,12 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String KEY_SESSION = "session";
 	public static final String KEY_DATE = "date";
 	public static final String KEY_CIG_COUNT = "cig_count";
-	public static final String KEY_OTHER_NICOTINE = "other_nicotine";
+	public static final String KEY_GUM_COUNT = "gum_count";
+	public static final String KEY_OTHER_COUNT = "other_count";
+	public static final String KEY_OTHER_TYPE_1 = "other_type_1";
+	public static final String KEY_OTHER_FREE_1 = "other_free_1";
+	public static final String KEY_OTHER_TYPE_2 = "other_type_2";
+	public static final String KEY_OTHER_FREE_2 = "other_free_2";
 	
 	private static final String CREATE_TABLE_PHASE_1 = "CREATE TABLE " + TABLE_NAME + "("
             + KEY_ID + " INTEGER PRIMARY KEY," + KEY_PID + " TEXT, " + KEY_STUDY + " TEXT, " + KEY_SESSION + " TEXT, "
@@ -33,10 +38,12 @@ public class DBHelper extends SQLiteOpenHelper {
 	private static final String CREATE_TABLE_PHASE_2 = "CREATE TABLE " + TABLE_NAME + "("
             + KEY_ID + " INTEGER PRIMARY KEY," + KEY_PID + " TEXT, " + KEY_STUDY + " TEXT, " + KEY_SESSION + " TEXT, "
 			+ KEY_DATE + " INTEGER," + KEY_CIG_COUNT 
-            + " INTEGER," + KEY_OTHER_NICOTINE + " INTEGER" + ")";
+            + " INTEGER, " + KEY_GUM_COUNT + " INTEGER" + ")";
 	private static final String CREATE_TABLE_PHASE_3 = "CREATE TABLE " + TABLE_NAME + "("
             + KEY_ID + " INTEGER PRIMARY KEY," + KEY_PID + " TEXT, " + KEY_STUDY + " TEXT, " + KEY_SESSION + " TEXT, "
-			+ KEY_DATE + " INTEGER," + KEY_CIG_COUNT + " INTEGER" + ")";
+			+ KEY_DATE + " INTEGER," + KEY_CIG_COUNT + " INTEGER, " + KEY_OTHER_COUNT + " INTEGER, "
+            + KEY_OTHER_TYPE_1 + " TEXT, " + KEY_OTHER_FREE_1 + " TEXT, "
+            + KEY_OTHER_TYPE_2 + " TEXT, " + KEY_OTHER_FREE_2 + " TEXT" + ")";
 	
 	SharedPreferences prefs;
 	
