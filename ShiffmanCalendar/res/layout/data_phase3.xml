@@ -45,7 +45,7 @@
         android:id="@+id/field2Text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Number of other nicotine sources used:"
+        android:text="Number of times other nicotine sources were used:"
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
