@@ -30,7 +30,7 @@ public class DataEntryDatePhase3 extends DataEntryDate {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.data_phase2);
+		setContentView(R.layout.data_phase3);
 		
 		title = (TextView) findViewById(R.id.title);
 		cigs = (EditText) findViewById(R.id.editText1);
@@ -44,7 +44,7 @@ public class DataEntryDatePhase3 extends DataEntryDate {
 		
 		title.setText(title.getText() + "\n" + super.formattedDate);
 		
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(null, 0, otherNicSource);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, otherNicSource);
 		otherNic1.setAdapter(adapter);
 		otherNic2.setAdapter(adapter);
 		
