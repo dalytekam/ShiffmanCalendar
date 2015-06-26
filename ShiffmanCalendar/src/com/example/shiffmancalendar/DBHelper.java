@@ -20,6 +20,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	private static final String TABLE_NAME = "calendarData";
 	
 	public static final String KEY_ID = "id";
+	public static final String KEY_DATE_ENTERED = "date_entered";
 	public static final String KEY_PID = "pid";
 	public static final String KEY_STUDY = "study";
 	public static final String KEY_SESSION = "session";
@@ -40,7 +41,8 @@ public class DBHelper extends SQLiteOpenHelper {
 //			+ KEY_DATE + " INTEGER," + KEY_CIG_COUNT 
 //            + " INTEGER, " + KEY_GUM_COUNT + " INTEGER" + ")";
 	private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "("
-            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_PID + " TEXT, " + KEY_STUDY + " TEXT, " + KEY_SESSION + " TEXT, "
+            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_DATE_ENTERED + " INTEGER, "
+			+ KEY_PID + " TEXT, " + KEY_STUDY + " TEXT, " + KEY_SESSION + " TEXT, "
 			+ KEY_DATE + " INTEGER," + KEY_CIG_COUNT + " INTEGER, "  + KEY_GUM_COUNT + " INTEGER, " + KEY_OTHER_COUNT + " INTEGER, "
             + KEY_OTHER_TYPE_1 + " TEXT, " + KEY_OTHER_FREE_1 + " TEXT, "
             + KEY_OTHER_TYPE_2 + " TEXT, " + KEY_OTHER_FREE_2 + " TEXT" + ")";
