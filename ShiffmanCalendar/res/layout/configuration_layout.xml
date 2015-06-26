@@ -82,7 +82,9 @@
     android:layout_width="100dp"
     android:layout_height="wrap_content"
     android:layout_alignParentLeft="true"
-    android:text="Cancel" />
+    android:text="Cancel"
+    android:layout_marginLeft="25dp"
+    android:layout_marginTop="25dp" />
 
 
     <Button
@@ -90,7 +92,9 @@
     android:layout_width="100dp"
     android:layout_height="wrap_content"
     android:layout_alignParentRight="true"
-    android:text="Save" />
+    android:text="Save"
+    android:layout_marginRight="25dp"
+    android:layout_marginTop="25dp" />
     </RelativeLayout>
 
     <ScrollView
@@ -102,14 +106,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" >
-            
+                
                 <TextView
 			    android:id="@+id/config_id_title"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:layout_marginTop="20dp"
 			    android:textAppearance="?android:attr/textAppearanceLarge"
-			    android:text="Enter Participant ID:" />
+			    android:text="Enter Participant ID:"
+    			android:layout_marginLeft="25dp" />
 
 
 			    <EditText
@@ -117,7 +122,8 @@
 			    android:layout_width="match_parent"
 			    android:layout_height="wrap_content"
 			    android:layout_marginBottom="20dp"
-			    android:ems="10" >
+			    android:ems="10"
+   				android:layout_marginLeft="25dp" >
 
 
 			    <requestFocus />
@@ -128,7 +134,8 @@
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:textAppearance="?android:attr/textAppearanceLarge"
-			    android:text="Enter Session Number:" />
+			    android:text="Enter Session Number:"
+   				android:layout_marginLeft="25dp" />
 
 
 			    <EditText
@@ -137,22 +144,24 @@
 			    android:layout_height="wrap_content"
 			    android:layout_marginBottom="20dp"
 			    android:ems="10"
-			    android:inputType="number" >
+			    android:inputType="number"
+   				android:layout_marginLeft="25dp" >
 			    </EditText>
-
 
 			    <TextView
 			    android:id="@+id/config_phase_title"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:textAppearance="?android:attr/textAppearanceLarge"
-			    android:text="Select Study:" />
+			    android:text="Select Study:"
+   				android:layout_marginLeft="25dp" />
 
 			    <RadioGroup 
     				android:layout_width="fill_parent"
     				android:layout_height="wrap_content"
     				android:orientation="horizontal"
-    				android:layout_marginBottom="20dp">
+    				android:layout_marginBottom="20dp"
+    				android:layout_marginLeft="25dp">
 				    <RadioButton
 				        android:id="@+id/config_phase1"
 				        android:layout_width="wrap_content"
@@ -174,39 +183,58 @@
 				        android:text="Phase 3" />
 			    </RadioGroup>
 			
+			<TableLayout
+			    android:id="@+id/tableLayout1"
+			    android:layout_width="match_parent"
+			    android:layout_height="match_parent" >
+				    
+			    <TableRow
+		        android:id="@+id/tableRow1"
+		        android:layout_width="fill_parent"
+		        android:layout_height="0dp"
+		        android:layout_weight="1" >
+				    <TextView
+				    android:id="@+id/config_start_title"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:textAppearance="?android:attr/textAppearanceLarge"
+				    android:text="Select Start Date:"
+				    android:layout_gravity="center"
+				    android:layout_marginRight="25dp" />
 			
-			    <TextView
-			    android:id="@+id/config_start_title"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:textAppearance="?android:attr/textAppearanceLarge"
-			    android:text="Select Start Date:" />
+				    <TextView
+				    android:id="@+id/config_end_title"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:textAppearance="?android:attr/textAppearanceLarge"
+				    android:text="Select End Date:"
+				    android:layout_gravity="center" />
 			
-			
-			    <android.widget.DatePicker
-			    android:id="@+id/config_start_datePicker"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:layout_marginBottom="1dp"
-			    android:calendarViewShown="false"
-			    android:gravity="center" />
-			
-			
-			    <TextView
-			    android:id="@+id/config_end_title"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:textAppearance="?android:attr/textAppearanceLarge"
-			    android:text="Select End Date:" />
-			
-			
-			    <android.widget.DatePicker
-			    android:id="@+id/config_end_datePicker"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:layout_marginBottom="1dp"
-			    android:calendarViewShown="false"
-			    android:gravity="center" />
+			    </TableRow>
+			    <TableRow
+		        android:id="@+id/tableRow1"
+		        android:layout_width="fill_parent"
+		        android:layout_height="0dp"
+		        android:layout_weight="1" >
+				    <android.widget.DatePicker
+				    android:id="@+id/config_start_datePicker"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_marginBottom="1dp"
+				    android:calendarViewShown="false"
+				    android:layout_gravity="center"
+				    android:layout_marginRight="25dp" />
+
+					<android.widget.DatePicker
+				    android:id="@+id/config_end_datePicker"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_marginBottom="1dp"
+				    android:calendarViewShown="false"
+				    android:layout_gravity="center" />
+		    	</TableRow>
+			    
+		    </TableLayout>
             
         </LinearLayout>
     </ScrollView>
