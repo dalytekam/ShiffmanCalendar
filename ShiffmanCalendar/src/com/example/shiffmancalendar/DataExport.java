@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -133,6 +134,7 @@ public class DataExport extends Activity {
 		for (String date : dates) {
 			dateList.add(date);
 		}
+		Collections.sort(dateList);
 		
 		return dateList;
 	}
