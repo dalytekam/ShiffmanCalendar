@@ -90,19 +90,13 @@ public class Configuration extends Activity {
 				}
 
 				AlertDialog.Builder builder = new AlertDialog.Builder(context);
-		        builder.setTitle("Save Participant Configuration?").setMessage("You will lose any un-exported data!!!!")
+		        builder.setTitle("Save Participant Configuration?").setMessage("This will overwrite the current participant configuration.")
 		               .setPositiveButton("Yes, save", new DialogInterface.OnClickListener() {
 		                   public void onClick(DialogInterface dialog, int id) {
 			       				save_data_to_prefs();
 			    				
-			    				clear_db();
-			    				
 			    				finish();
 		                   }
-
-						private void clear_db() {
-							getApplicationContext().deleteDatabase(DBHelper.DB_NAME);	
-						}
 
 						private void save_data_to_prefs() {
 							String idText = id.getText().toString();
@@ -128,7 +122,7 @@ public class Configuration extends Activity {
 							edit.commit();
 						}
 		               })
-		               .setNegativeButton("No, I need to export data", new DialogInterface.OnClickListener() {
+		               .setNegativeButton("No, don't save!", new DialogInterface.OnClickListener() {
 		                   public void onClick(DialogInterface dialog, int id) {
 		                       // User cancelled the dialog
 		                	   finish();
