@@ -4,12 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select dates below (one at a time) and label them with holiday names.\nWhen you are done click Save."
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -21,7 +16,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Clear All"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp" />
 
     <Button
         android:id="@+id/holiday_save"
@@ -29,8 +26,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="25dp" />
 	</RelativeLayout>
+	
+    <TextView
+    android:id="@+id/textView1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Select dates below (one at a time) and label them with holiday names.\nClick save to apply the label to the selected date."
+    android:textAppearance="?android:attr/textAppearanceMedium" />
 	
     <EditText
         android:id="@+id/holiday_editText"
