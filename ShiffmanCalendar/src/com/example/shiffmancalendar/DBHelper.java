@@ -32,16 +32,16 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String KEY_OTHER_TYPE_2 = "other_type_2";
 	public static final String KEY_OTHER_FREE_2 = "other_free_2";
 	
-	private static final String CREATE_TABLE_PHASE_1 = "CREATE TABLE " + TABLE_NAME + "("
+//	private static final String CREATE_TABLE_PHASE_1 = "CREATE TABLE " + TABLE_NAME + "("
+//            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_PID + " TEXT, " + KEY_STUDY + " TEXT, " + KEY_SESSION + " TEXT, "
+//			+ KEY_DATE + " INTEGER," + KEY_CIG_COUNT + " INTEGER" + ")";
+//	private static final String CREATE_TABLE_PHASE_2 = "CREATE TABLE " + TABLE_NAME + "("
+//            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_PID + " TEXT, " + KEY_STUDY + " TEXT, " + KEY_SESSION + " TEXT, "
+//			+ KEY_DATE + " INTEGER," + KEY_CIG_COUNT 
+//            + " INTEGER, " + KEY_GUM_COUNT + " INTEGER" + ")";
+	private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "("
             + KEY_ID + " INTEGER PRIMARY KEY," + KEY_PID + " TEXT, " + KEY_STUDY + " TEXT, " + KEY_SESSION + " TEXT, "
-			+ KEY_DATE + " INTEGER," + KEY_CIG_COUNT + " INTEGER" + ")";
-	private static final String CREATE_TABLE_PHASE_2 = "CREATE TABLE " + TABLE_NAME + "("
-            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_PID + " TEXT, " + KEY_STUDY + " TEXT, " + KEY_SESSION + " TEXT, "
-			+ KEY_DATE + " INTEGER," + KEY_CIG_COUNT 
-            + " INTEGER, " + KEY_GUM_COUNT + " INTEGER" + ")";
-	private static final String CREATE_TABLE_PHASE_3 = "CREATE TABLE " + TABLE_NAME + "("
-            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_PID + " TEXT, " + KEY_STUDY + " TEXT, " + KEY_SESSION + " TEXT, "
-			+ KEY_DATE + " INTEGER," + KEY_CIG_COUNT + " INTEGER, " + KEY_OTHER_COUNT + " INTEGER, "
+			+ KEY_DATE + " INTEGER," + KEY_CIG_COUNT + " INTEGER, "  + KEY_GUM_COUNT + " INTEGER, " + KEY_OTHER_COUNT + " INTEGER, "
             + KEY_OTHER_TYPE_1 + " TEXT, " + KEY_OTHER_FREE_1 + " TEXT, "
             + KEY_OTHER_TYPE_2 + " TEXT, " + KEY_OTHER_FREE_2 + " TEXT" + ")";
 	
@@ -55,22 +55,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		int phase = prefs.getInt("phase", 0);
-		switch (phase) {
-		case 0:
-			db.execSQL(CREATE_TABLE_PHASE_1);
-			break;
-		case 1:
-			db.execSQL(CREATE_TABLE_PHASE_2);
-			break;
-		case 2:
-			db.execSQL(CREATE_TABLE_PHASE_3);
-			break;
-		default:
-			db.execSQL(CREATE_TABLE_PHASE_1);
-			break;
-		}
-
+		db.execSQL(CREATE_TABLE);
 	}
 
 	@Override
