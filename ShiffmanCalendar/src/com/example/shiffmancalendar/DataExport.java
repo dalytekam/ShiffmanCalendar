@@ -4,10 +4,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -15,58 +20,121 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Environment;
-import android.widget.ProgressBar;
+import android.text.format.Time;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DataExport extends Activity {
 
-	ProgressBar progress;
+	Spinner dateSpinner;
+	Button export;
 	TextView text;
+	Context context;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		
+		context = this;
+		
 		setContentView(R.layout.exportdata_layout);
-		progress = (ProgressBar) findViewById(R.id.progressBar1);
 		text = (TextView) findViewById(R.id.textView1);
+		dateSpinner = (Spinner) findViewById(R.id.dateSpinner);
+		export = (Button) findViewById(R.id.exportButton);
 		
-		SharedPreferences prefs = getSharedPreferences("shiffman_calendar", 0);
-		String id = prefs.getString("id", "unknown");
-		String session = prefs.getString("session", "unknown");
-		long start = prefs.getLong("start", System.currentTimeMillis());
-		long end = prefs.getLong("end", System.currentTimeMillis());
-		int phase = prefs.getInt("phase", -1);
+		List<String> dates = generateListOfDates();
+		ArrayAdapter<String> dateAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_dropdown_item_1line, dates);
+		dateSpinner.setAdapter(dateAdapter);
 		
-		printToScreen(printMetaData(id, start, end, phase));
+		export.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				String selectedDate = (String) dateSpinner.getSelectedItem();
+				if (selectedDate.equalsIgnoreCase("")) {
+					Toast.makeText(context, "Please select a start date", Toast.LENGTH_SHORT).show();
+					return;
+				}
+
+				SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+				Date parsedDate = null;
+				try {
+					parsedDate = format1.parse(selectedDate);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					Toast.makeText(context, "Date parse failed", Toast.LENGTH_SHORT).show();
+					return;
+				}
+				
+				Time t = new Time();
+				t.set(parsedDate.getTime());
+				System.out.println("Date in millis: " + t.toMillis(false));
+				
+				SharedPreferences prefs = context.getSharedPreferences("shiffman_calendar", 0);
+				String id = prefs.getString("id", "unknown");
+				String session = prefs.getString("session", "unknown");
+				long start = prefs.getLong("start", System.currentTimeMillis());
+				long end = prefs.getLong("end", System.currentTimeMillis());
+				int phase = prefs.getInt("phase", -1);
+				
+				printToScreen(printMetaData(id, start, end, phase));
+				
+				printToScreen("Loading data...");
+				DBHelper db = new DBHelper(context);
+				List<ContentValues> data = db.getAllEntries(null, null, t);
+				List<String> columns = db.getColumns(0);
+				
+				printToScreen("Generating CSV file...");
+				
+				printToScreen("Building text...");
+				String csvText = generateCSVText(data, columns);
+				
+				printToScreen("Writing to file...");
+				File output = generateFile(id, start, end, phase, session);
+				String filename = output.getName();
+				String success = writeToCSV(csvText, output);
+				
+				if (success.equalsIgnoreCase("success")) {
+					printToScreen("SUCCESS: " + filename);
+				} else {
+					printToScreen("ERROR: " + filename + ", please try again.");
+				}
+				
+				showDialogBox(success, output.getAbsolutePath());
+				
+			}
+			
+		});
+	}
+
+	private List<String> generateListOfDates() {
+		DBHelper db = new DBHelper(context);
+		List<ContentValues> data = db.getAllEntries(null, null, null);
+		Set<String> dates = new HashSet<String>();
 		
-		printToScreen("Loading data...");
-		DBHelper db = new DBHelper(this);
-		List<ContentValues> data = db.getAllEntries(null, null);
-		List<String> columns = db.getColumns(0);
-		
-		printToScreen("Generating CSV file...");
-		
-		printToScreen("Building text...");
-		String csvText = generateCSVText(data, columns);
-		
-		printToScreen("Writing to file...");
-		File output = generateFile(id, start, end, phase, session);
-		String filename = output.getName();
-		String success = writeToCSV(csvText, output);
-		
-		if (success.equalsIgnoreCase("success")) {
-			printToScreen("SUCCESS: " + filename);
-		} else {
-			printToScreen("ERROR: " + filename + ", please try again.");
+		for (ContentValues d : data) {
+			long entered = d.getAsLong(DBHelper.KEY_DATE_ENTERED);
+			Calendar cal = Calendar.getInstance();
+			cal.setTimeInMillis(entered);
+			SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+			dates.add(format1.format(cal.getTime()));
+		}
+		List<String> dateList = new ArrayList<String>();
+		dateList.add("");
+		for (String date : dates) {
+			dateList.add(date);
 		}
 		
-		progress.setIndeterminate(false); // stop the continuous spinning
-		showDialogBox(success, output.getAbsolutePath());
+		return dateList;
 	}
 
 	private void showDialogBox(String success, String filename) {

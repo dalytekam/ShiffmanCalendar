@@ -52,7 +52,7 @@ public class SummarizeData extends Activity {
 		String session = prefs.getString("session", "unknown");
 		
 		DBHelper db = new DBHelper(this);
-		List<ContentValues> data = db.getAllEntries(id, session);
+		List<ContentValues> data = db.getAllEntries(id, session, null);
 		List<String> columns = db.getColumns(0);
 		
 		TableRow columnRow = new TableRow(this);

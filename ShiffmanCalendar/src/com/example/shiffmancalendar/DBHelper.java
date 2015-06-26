@@ -1,9 +1,7 @@
 package com.example.shiffmancalendar;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -11,6 +9,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.format.Time;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -104,7 +103,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	            new String[] { rowId });
 	}
 	
-	public List<ContentValues> getAllEntries(String pid, String session) {
+	public List<ContentValues> getAllEntries(String pid, String session, Time startDate) {
 		List<ContentValues> entries = new ArrayList<ContentValues>();
 		
 		// Select All Query
@@ -119,6 +118,10 @@ public class DBHelper extends SQLiteOpenHelper {
 	    	selectQuery += " WHERE " + KEY_PID + "=?";
 	    	vals = new String[1];
 	    	vals[0] = pid;
+	    } else if (startDate != null) {
+	    	selectQuery += " WHERE " + KEY_DATE_ENTERED + ">=?";
+	    	vals = new String[1];
+	    	vals[0] = Long.toString(startDate.toMillis(false));
 	    }
 	    selectQuery +=  " ORDER BY " + KEY_DATE;
 	 
