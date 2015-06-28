@@ -57,13 +57,20 @@ public class SummarizeData extends Activity {
 		
 		TableRow columnRow = new TableRow(this);
 		columnRow.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+
 		for (String columnName : columns) {
 			TextView cell = new TextView(this);
 			cell.setText(columnName);
-			cell.setTextSize(20);
+			cell.setTextSize(14);
 			cell.setTextColor(Color.BLUE);
 			cell.setGravity(Gravity.CENTER);
+			cell.setPadding(2, 2, 2, 2);
 			columnRow.addView(cell);
+			
+			View vline1 = new View(this);
+			vline1.setLayoutParams(new TableRow.LayoutParams(2, TableRow.LayoutParams.MATCH_PARENT));
+			vline1.setBackgroundColor(Color.BLUE);
+			columnRow.addView(vline1);
 		}
 		table.addView(columnRow);
 		final View vline = new View(this);
@@ -75,7 +82,7 @@ public class SummarizeData extends Activity {
         for (ContentValues value : data) {
         	TableRow dataRow = new TableRow(this);
     		dataRow.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-    		
+    		dataRow.setShowDividers(TableRow.SHOW_DIVIDER_MIDDLE);
     		for (String columnName : columns) {
     			TextView cell = new TextView(this);
     			if (columnName.equalsIgnoreCase("date")) {
@@ -87,10 +94,16 @@ public class SummarizeData extends Activity {
     			} else {
     				cell.setText(value.getAsString(columnName));
     			}
-    			cell.setTextSize(15);
+    			cell.setTextSize(14);
     			cell.setTextColor(Color.BLACK);
     			cell.setGravity(Gravity.CENTER);
+    			cell.setPadding(5, 5, 5, 5);
     			dataRow.addView(cell);
+    			
+    			View vline1 = new View(this);
+    			vline1.setLayoutParams(new TableRow.LayoutParams(2, TableRow.LayoutParams.MATCH_PARENT));
+    			vline1.setBackgroundColor(Color.BLACK);
+    			dataRow.addView(vline1);
     		}
     		table.addView(dataRow);
     		final View vline1 = new View(this);
