@@ -135,6 +135,7 @@ public class DataExport extends Activity {
 			dateList.add(date);
 		}
 		Collections.sort(dateList);
+		Collections.reverse(dateList);
 		
 		return dateList;
 	}
