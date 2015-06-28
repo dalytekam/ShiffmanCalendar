@@ -31,7 +31,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/p3_editText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -52,7 +52,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/p3_editText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -179,7 +179,7 @@
     	android:layout_gravity="center" >
         
     <Button
-        android:id="@+id/cancel_button"
+        android:id="@+id/p3_cancel_button"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="Cancel"
@@ -187,12 +187,12 @@
         android:layout_marginRight="400dp" />
 
     <Button
-        android:id="@+id/save_button"
+        android:id="@+id/p3_save_button"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:text="Save"
-        android:layout_toRightOf="@+id/cancel_button" />
+        android:layout_toRightOf="@+id/p3_cancel_button" />
     
     </RelativeLayout>
 

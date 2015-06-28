@@ -24,10 +24,10 @@ public class DataEntryDatePhase2 extends DataEntryDate {
 		setContentView(R.layout.data_phase2);
 		
 		title = (TextView) findViewById(R.id.title);
-		cigs = (EditText) findViewById(R.id.editText1);
-		gums = (EditText) findViewById(R.id.editText2);
-		cancel = (Button) findViewById(R.id.cancel_button);
-		save = (Button) findViewById(R.id.save_button);
+		cigs = (EditText) findViewById(R.id.p2_editText1);
+		gums = (EditText) findViewById(R.id.p2_editText2);
+		cancel = (Button) findViewById(R.id.p2_cancel_button);
+		save = (Button) findViewById(R.id.p2_save_button);
 		
 		title.setText(title.getText() + "\n" + super.formattedDate);
 		

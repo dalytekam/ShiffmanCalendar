@@ -33,14 +33,14 @@ public class DataEntryDatePhase3 extends DataEntryDate {
 		setContentView(R.layout.data_phase3);
 		
 		title = (TextView) findViewById(R.id.title);
-		cigs = (EditText) findViewById(R.id.editText1);
-		otherNicCnt = (EditText) findViewById(R.id.editText2);
+		cigs = (EditText) findViewById(R.id.p3_editText1);
+		otherNicCnt = (EditText) findViewById(R.id.p3_editText2);
 		otherNic1 = (Spinner) findViewById(R.id.dropdown1);
 		otherNic2 = (Spinner) findViewById(R.id.dropdown2);
 		otherFree1 = (EditText) findViewById(R.id.otherText1);
 		otherFree2 = (EditText) findViewById(R.id.otherText2);
-		cancel = (Button) findViewById(R.id.cancel_button);
-		save = (Button) findViewById(R.id.save_button);
+		cancel = (Button) findViewById(R.id.p3_cancel_button);
+		save = (Button) findViewById(R.id.p3_save_button);
 		
 		title.setText(title.getText() + "\n" + super.formattedDate);
 		

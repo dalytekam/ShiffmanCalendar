@@ -29,9 +29,9 @@ public class DataEntryDatePhase1 extends DataEntryDate {
 		setContentView(R.layout.data_phase1);
 		
 		title = (TextView) findViewById(R.id.title);
-		cigs = (EditText) findViewById(R.id.editText1);
-		cancel = (Button) findViewById(R.id.cancel_button);
-		save = (Button) findViewById(R.id.save_button);
+		cigs = (EditText) findViewById(R.id.p1_editText1);
+		cancel = (Button) findViewById(R.id.p1_cancel_button);
+		save = (Button) findViewById(R.id.p1_save_button);
 		
 		title.setText(title.getText() + "\n" + super.formattedDate);
 		
