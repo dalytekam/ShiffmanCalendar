@@ -32,27 +32,30 @@
 
     <EditText
         android:id="@+id/editText1"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="numberDecimal"
-        android:gravity="center" >
+        android:gravity="center"
+        android:layout_gravity="center" >
 
         <requestFocus />
     </EditText>
 
     <RelativeLayout
-    	android:layout_width="match_parent"
+    	android:layout_width="wrap_content"
     	android:layout_height="match_parent"
     	android:orientation="vertical"
-    	android:layout_marginTop="50dp" >
+    	android:layout_marginTop="50dp"
+    	android:layout_gravity="center" >
         
     <Button
         android:id="@+id/cancel_button"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="Cancel"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="400dp" />
 
     <Button
         android:id="@+id/save_button"
@@ -60,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:text="Save"
-        android:layout_alignParentRight="true" />
+        android:layout_toRightOf="@+id/cancel_button" />
     
     </RelativeLayout>
 

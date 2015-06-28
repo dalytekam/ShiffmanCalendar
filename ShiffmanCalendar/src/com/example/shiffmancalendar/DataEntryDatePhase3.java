@@ -44,7 +44,7 @@ public class DataEntryDatePhase3 extends DataEntryDate {
 		
 		title.setText(title.getText() + "\n" + super.formattedDate);
 		
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, otherNicSource);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, otherNicSource);
 		otherNic1.setAdapter(adapter);
 		otherNic2.setAdapter(adapter);
 		
