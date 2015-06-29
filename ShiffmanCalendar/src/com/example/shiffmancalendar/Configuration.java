@@ -21,8 +21,8 @@ import android.widget.Toast;
 
 public class Configuration extends Activity {
 
-	EditText id;
-	EditText session;
+//	EditText id;
+//	EditText session;
 	//Spinner phase;
 	RadioButton[] phase;
 	DatePicker start;
@@ -41,8 +41,8 @@ public class Configuration extends Activity {
 		context = this;
 		setContentView(R.layout.configuration_layout);
 		
-		id = (EditText) findViewById(R.id.config_id_editText);
-		session = (EditText) findViewById(R.id.config_session_editText);
+//		id = (EditText) findViewById(R.id.config_id_editText);
+//		session = (EditText) findViewById(R.id.config_session_editText);
 		phase = new RadioButton[3];
 		phase[0] = (RadioButton) findViewById(R.id.config_phase1);
 		phase[1] = (RadioButton) findViewById(R.id.config_phase2);
@@ -71,17 +71,17 @@ public class Configuration extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				String idText = id.getText().toString();
-				if (idText.equalsIgnoreCase("")) {
-					Toast.makeText(getApplicationContext(), "You forgot to enter a participant id!", Toast.LENGTH_SHORT).show();
-					return;
-				}
-				
-				String sessionText = session.getText().toString();
-				if (sessionText.equalsIgnoreCase("")) {
-					Toast.makeText(getApplicationContext(), "You forgot to enter a session number!", Toast.LENGTH_SHORT).show();
-					return;
-				}
+//				String idText = id.getText().toString();
+//				if (idText.equalsIgnoreCase("")) {
+//					Toast.makeText(getApplicationContext(), "You forgot to enter a participant id!", Toast.LENGTH_SHORT).show();
+//					return;
+//				}
+//				
+//				String sessionText = session.getText().toString();
+//				if (sessionText.equalsIgnoreCase("")) {
+//					Toast.makeText(getApplicationContext(), "You forgot to enter a session number!", Toast.LENGTH_SHORT).show();
+//					return;
+//				}
 				
 				int phase_checked = getSelectedPhase();
 				if (phase_checked == -1) {
@@ -104,8 +104,8 @@ public class Configuration extends Activity {
 		                   }
 
 						private void save_data_to_prefs() {
-							String idText = id.getText().toString();
-							String sessionNum = session.getText().toString();
+							String idText = "default"; //id.getText().toString();
+							String sessionNum = "0"; //session.getText().toString();
 							int phase_num = getSelectedPhase();
 							Calendar startCal = Calendar.getInstance();
 							startCal.clear();

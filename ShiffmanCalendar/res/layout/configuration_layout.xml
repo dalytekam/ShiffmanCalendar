@@ -4,73 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-<!--     <TextView -->
-<!--     android:id="@+id/config_id_title" -->
-<!--     android:layout_width="wrap_content" -->
-<!--     android:layout_height="wrap_content" -->
-<!--     android:layout_marginTop="20dp" -->
-<!--     android:text="Enter Participant ID:" /> -->
-
-
-<!--     <EditText -->
-<!--     android:id="@+id/config_id_editText" -->
-<!--     android:layout_width="match_parent" -->
-<!--     android:layout_height="wrap_content" -->
-<!--     android:layout_marginBottom="20dp" -->
-<!--     android:ems="10" > -->
-
-
-<!--     <requestFocus /> -->
-<!--     </EditText> -->
-
-
-<!--     <TextView -->
-<!--     android:id="@+id/config_phase_title" -->
-<!--     android:layout_width="wrap_content" -->
-<!--     android:layout_height="wrap_content" -->
-<!--     android:text="Select Study Phase:" /> -->
-
-
-<!--     <Spinner -->
-<!--     android:id="@+id/config_phase_spinner" -->
-<!--     android:layout_width="match_parent" -->
-<!--     android:layout_height="wrap_content" -->
-<!--     android:layout_marginBottom="20dp" -->
-<!--     android:gravity="center" /> -->
-
-
-<!--     <TextView -->
-<!--     android:id="@+id/config_start_title" -->
-<!--     android:layout_width="wrap_content" -->
-<!--     android:layout_height="wrap_content" -->
-<!--     android:text="Select Start Date:" /> -->
-
-
-<!--     <android.widget.DatePicker -->
-<!--     android:id="@+id/config_start_datePicker" -->
-<!--     android:layout_width="wrap_content" -->
-<!--     android:layout_height="wrap_content" -->
-<!--     android:layout_marginBottom="20dp" -->
-<!--     android:calendarViewShown="false" -->
-<!--     android:gravity="center" /> -->
-
-
-<!--     <TextView -->
-<!--     android:id="@+id/config_end_title" -->
-<!--     android:layout_width="wrap_content" -->
-<!--     android:layout_height="wrap_content" -->
-<!--     android:text="Select End Date:" /> -->
-
-
-<!--     <android.widget.DatePicker -->
-<!--     android:id="@+id/config_end_datePicker" -->
-<!--     android:layout_width="wrap_content" -->
-<!--     android:layout_height="wrap_content" -->
-<!--     android:layout_marginBottom="50dp" -->
-<!--     android:calendarViewShown="false" -->
-<!--     android:gravity="center" /> -->
-
-
     <RelativeLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -107,46 +40,46 @@
             android:layout_height="match_parent"
             android:orientation="vertical" >
                 
-                <TextView
-			    android:id="@+id/config_id_title"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:layout_marginTop="20dp"
-			    android:textAppearance="?android:attr/textAppearanceLarge"
-			    android:text="Enter Participant ID:"
-    			android:layout_marginLeft="25dp" />
+<!--                 <TextView -->
+<!-- 			    android:id="@+id/config_id_title" -->
+<!-- 			    android:layout_width="wrap_content" -->
+<!-- 			    android:layout_height="wrap_content" -->
+<!-- 			    android:layout_marginTop="20dp" -->
+<!-- 			    android:textAppearance="?android:attr/textAppearanceLarge" -->
+<!-- 			    android:text="Enter Participant ID:" -->
+<!--     			android:layout_marginLeft="25dp" /> -->
 
 
-			    <EditText
-			    android:id="@+id/config_id_editText"
-			    android:layout_width="match_parent"
-			    android:layout_height="wrap_content"
-			    android:layout_marginBottom="20dp"
-			    android:ems="10"
-   				android:layout_marginLeft="25dp" >
+<!-- 			    <EditText -->
+<!-- 			    android:id="@+id/config_id_editText" -->
+<!-- 			    android:layout_width="match_parent" -->
+<!-- 			    android:layout_height="wrap_content" -->
+<!-- 			    android:layout_marginBottom="20dp" -->
+<!-- 			    android:ems="10" -->
+<!--    				android:layout_marginLeft="25dp" > -->
 
 
-			    <requestFocus />
-			    </EditText>
+<!-- 			    <requestFocus /> -->
+<!-- 			    </EditText> -->
 			    
-			    <TextView
-			    android:id="@+id/config_session_title"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:textAppearance="?android:attr/textAppearanceLarge"
-			    android:text="Enter Session Number:"
-   				android:layout_marginLeft="25dp" />
+<!-- 			    <TextView -->
+<!-- 			    android:id="@+id/config_session_title" -->
+<!-- 			    android:layout_width="wrap_content" -->
+<!-- 			    android:layout_height="wrap_content" -->
+<!-- 			    android:textAppearance="?android:attr/textAppearanceLarge" -->
+<!-- 			    android:text="Enter Session Number:" -->
+<!--    				android:layout_marginLeft="25dp" /> -->
 
 
-			    <EditText
-			    android:id="@+id/config_session_editText"
-			    android:layout_width="match_parent"
-			    android:layout_height="wrap_content"
-			    android:layout_marginBottom="20dp"
-			    android:ems="10"
-			    android:inputType="number"
-   				android:layout_marginLeft="25dp" >
-			    </EditText>
+<!-- 			    <EditText -->
+<!-- 			    android:id="@+id/config_session_editText" -->
+<!-- 			    android:layout_width="match_parent" -->
+<!-- 			    android:layout_height="wrap_content" -->
+<!-- 			    android:layout_marginBottom="20dp" -->
+<!-- 			    android:ems="10" -->
+<!-- 			    android:inputType="number" -->
+<!--    				android:layout_marginLeft="25dp" > -->
+<!-- 			    </EditText> -->
 
 			    <TextView
 			    android:id="@+id/config_phase_title"
