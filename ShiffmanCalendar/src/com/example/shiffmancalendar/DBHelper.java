@@ -87,6 +87,15 @@ public class DBHelper extends SQLiteOpenHelper {
 		return exists;
 	}
 	
+	public boolean participantSettingsExist(String pid, String session, String study) {
+		SQLiteDatabase db = this.getReadableDatabase();
+		String countQuery = "SELECT  * FROM " + TABLE_NAME + " WHERE " + KEY_PID + "=? AND " + KEY_SESSION + "=? AND " 
+							+ KEY_STUDY + "= ?";
+        Cursor cursor = db.rawQuery(countQuery, new String[] { pid, session, study });
+        
+        return cursor.getCount() > 0;
+	}
+	
 	public void addEntry(ContentValues values) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		 
@@ -101,6 +110,21 @@ public class DBHelper extends SQLiteOpenHelper {
 	    // updating row
 	    return db.update(TABLE_NAME, values, KEY_ID + " = ?",
 	            new String[] { rowId });
+	}
+	
+	public int applyIDAndSession(String pid, String session) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put(KEY_PID, pid);
+		values.put(KEY_SESSION, session);
+		
+		return db.update(TABLE_NAME, values, KEY_PID + " =?", new String[] {"default"});
+	}
+	
+	public int removeDefaultIDRows() {
+		SQLiteDatabase db = this.getWritableDatabase();
+		
+		return db.delete(TABLE_NAME, KEY_PID + " +?", new String[] {"default"});
 	}
 	
 	public List<ContentValues> getAllEntries(String pid, String session, Time startDate) {
