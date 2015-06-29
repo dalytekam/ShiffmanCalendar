@@ -100,7 +100,8 @@ public class DataExport extends Activity {
 				String csvText = generateCSVText(data, columns);
 				
 				printToScreen("Writing to file...");
-				File output = generateFile(id, start, end, phase, session);
+				String mostRecent = (String) dateSpinner.getItemAtPosition(1);
+				File output = generateFile(id, mostRecent);
 				String filename = output.getName();
 				String success = writeToCSV(csvText, output);
 				
@@ -188,11 +189,11 @@ public class DataExport extends Activity {
 		return success;
 	}
 
-	private File generateFile(String id, long start, long end, int phase, String session) {
+	private File generateFile(String startDate, String mostRecentDate) {
 		Calendar c = Calendar.getInstance();
 		SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy_h-m-s");
 		String formattedDate = df.format(c.getTime());
-		String filename = id + "_" + Configuration.phaseNames[phase] + "_" + session + "_" + formattedDate + ".csv";
+		String filename = "SHIFFMANCAL_" + startDate + "_" + mostRecentDate + "_exported_"+ formattedDate + ".csv";
 		File dir = new File(Environment.getExternalStorageDirectory(), "SHIFFMANCAL");
 		dir.mkdir();
 		return new File(dir, filename);
