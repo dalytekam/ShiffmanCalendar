@@ -101,7 +101,7 @@ public class DataExport extends Activity {
 				
 				printToScreen("Writing to file...");
 				String mostRecent = (String) dateSpinner.getItemAtPosition(1);
-				File output = generateFile(id, mostRecent);
+				File output = generateFile(selectedDate, mostRecent);
 				String filename = output.getName();
 				String success = writeToCSV(csvText, output);
 				
@@ -190,6 +190,10 @@ public class DataExport extends Activity {
 	}
 
 	private File generateFile(String startDate, String mostRecentDate) {
+		
+		startDate = startDate.replaceAll("/", "-");
+		mostRecentDate = mostRecentDate.replaceAll("/", "-");
+		
 		Calendar c = Calendar.getInstance();
 		SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy_h-m-s");
 		String formattedDate = df.format(c.getTime());
