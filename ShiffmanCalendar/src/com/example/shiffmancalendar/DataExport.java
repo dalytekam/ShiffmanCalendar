@@ -212,7 +212,7 @@ public class DataExport extends Activity {
 		// add data
 		for (ContentValues values: data) {
 			for (String col: columns) {
-				if (col.equalsIgnoreCase("date")) {
+				if (col.equalsIgnoreCase("date") || col.equalsIgnoreCase("date_entered")) {
     				long date = values.getAsLong(col);
     				Calendar cal = Calendar.getInstance();
     				cal.setTimeInMillis(date);
