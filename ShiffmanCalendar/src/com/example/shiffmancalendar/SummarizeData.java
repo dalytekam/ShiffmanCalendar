@@ -7,7 +7,10 @@ import java.util.Locale;
 
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -23,27 +26,58 @@ import android.widget.TextView;
 public class SummarizeData extends Activity {
 
 	TableLayout table;
-	Button export;
+	Button delete, applyID;
+	Context context;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		
+		context = this;
 //		TableLayout table = new TableLayout(this);
 //		table.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		setContentView(R.layout.summarize_layout);
 		table = (TableLayout) findViewById(R.id.summary_table);
-		export = (Button) findViewById(R.id.summary_button);
+		delete = (Button) findViewById(R.id.delete_button);
+		applyID = (Button) findViewById(R.id.applyID_button);
 		
-		export.setOnClickListener(new OnClickListener() {
+		delete.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getApplicationContext(), DataExport.class);
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+		        builder.setTitle("Delete this participant's data?").setMessage("This action will DELETE data from the database! This CANNOT be undone! Are you sure you want to do this?")
+		               .setPositiveButton("Yes, delete data", new DialogInterface.OnClickListener() {
+		                   public void onClick(DialogInterface dialog, int id) {
+			       				DBHelper db = new DBHelper(context);
+			       				int rowsUpdated = db.removeDefaultIDRows();
+			    				
+			       				//showFeedbackDialog(rowsUpdated);
+		                   }
+		               })
+		               .setNegativeButton("No, don't delete data!", new DialogInterface.OnClickListener() {
+		                   public void onClick(DialogInterface dialog, int id) {
+		                       // User cancelled the dialog
+		                	   //finish();
+		                   }
+		               })
+		               .setCancelable(false);
+		        // Create the AlertDialog object and return it
+		        AlertDialog dialog = builder.create();
+		        dialog.show();
+		        
+			}
+			
+		});
+		
+		applyID.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getApplicationContext(), ApplyIDAndSession.class);
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(intent);
-				
 			}
 			
 		});

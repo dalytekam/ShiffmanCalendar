@@ -4,14 +4,29 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:orientation="vertical" >
     <Button
-        android:id="@+id/summary_button"
+        android:id="@+id/delete_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="Export to File"
+        android:text="Delete participant data"
+        android:layout_marginBottom="25dp"
+        android:layout_marginRight="200dp" />
+    
+    <Button
+        android:id="@+id/applyID_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/delete_button"
+        android:layout_centerHorizontal="true"
+        android:text="Apply participant ID"
         android:layout_marginBottom="25dp" />
+    </RelativeLayout>
 
     <ScrollView
             android:id="@+id/scrollView1"
