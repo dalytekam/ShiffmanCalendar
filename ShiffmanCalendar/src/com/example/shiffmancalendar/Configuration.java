@@ -88,6 +88,11 @@ public class Configuration extends Activity {
 					Toast.makeText(getApplicationContext(), "You forgot to select a study phase!", Toast.LENGTH_SHORT).show();
 					return;
 				}
+				
+				if (!checkStartDateBeforeEndDate()) {
+					Toast.makeText(getApplicationContext(), "Start date must be equal to or before the end date", Toast.LENGTH_SHORT).show();
+					return;
+				}
 
 				AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		        builder.setTitle("Save Participant Configuration?").setMessage("This will overwrite the current participant configuration.")
@@ -131,6 +136,18 @@ public class Configuration extends Activity {
 		        // Create the AlertDialog object and return it
 		        AlertDialog dialog = builder.create();
 		        dialog.show();
+			}
+
+			private boolean checkStartDateBeforeEndDate() {
+				Calendar startCal = Calendar.getInstance();
+				startCal.clear();
+				startCal.set(start.getYear(), start.getMonth(), start.getDayOfMonth());
+				long startDate = startCal.getTimeInMillis();
+				Calendar endCal = Calendar.getInstance();
+				endCal.clear();
+				endCal.set(end.getYear(), end.getMonth(), end.getDayOfMonth());
+				long endDate = endCal.getTimeInMillis();
+				return startDate <= endDate;
 			}
 
 			private int getSelectedPhase() {
