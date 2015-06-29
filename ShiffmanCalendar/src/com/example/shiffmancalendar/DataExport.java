@@ -131,12 +131,12 @@ public class DataExport extends Activity {
 			dates.add(format1.format(cal.getTime()));
 		}
 		List<String> dateList = new ArrayList<String>();
-		dateList.add("");
 		for (String date : dates) {
 			dateList.add(date);
 		}
 		Collections.sort(dateList);
 		Collections.reverse(dateList);
+		dateList.add(0, "");
 		
 		return dateList;
 	}
