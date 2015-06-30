@@ -53,7 +53,7 @@ public class SummarizeData extends Activity {
 			       				DBHelper db = new DBHelper(context);
 			       				int rowsUpdated = db.removeDefaultIDRows();
 			    				
-			       				//showFeedbackDialog(rowsUpdated);
+			       				showFeedbackDialog(rowsUpdated);
 		                   }
 		               })
 		               .setNegativeButton("No, don't delete data!", new DialogInterface.OnClickListener() {
@@ -81,6 +81,16 @@ public class SummarizeData extends Activity {
 			}
 			
 		});
+		
+	}
+	
+	
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		
 		SharedPreferences prefs = getSharedPreferences("shiffman_calendar", 0);
 		String id = prefs.getString("id", "unknown");
 		String session = prefs.getString("session", "unknown");
@@ -88,6 +98,8 @@ public class SummarizeData extends Activity {
 		DBHelper db = new DBHelper(this);
 		List<ContentValues> data = db.getAllEntries(id, session, null);
 		List<String> columns = db.getColumns(0);
+		
+		table.removeAllViews();
 		
 		TableRow columnRow = new TableRow(this);
 		columnRow.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
@@ -146,6 +158,22 @@ public class SummarizeData extends Activity {
             vline1.setBackgroundColor(Color.BLACK);
             table.addView(vline1); // add line below heading
         }
+	}
+
+
+
+	private void showFeedbackDialog(final int rowsUpdated) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Participant data deleted.").setMessage("" + rowsUpdated + " database entries have been deleted.")
+               .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                   public void onClick(DialogInterface dialog, int id) {
+	       				finish();
+                   }
+               })
+               .setCancelable(false);
+        // Create the AlertDialog object and return it
+        AlertDialog dialog = builder.create();
+        dialog.show();
 	}
 
 }
