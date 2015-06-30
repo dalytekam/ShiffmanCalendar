@@ -194,10 +194,13 @@ public class DataExport extends Activity {
 		startDate = startDate.replaceAll("/", "-");
 		mostRecentDate = mostRecentDate.replaceAll("/", "-");
 		
+		SharedPreferences prefs = context.getSharedPreferences("shiffman_calendar", 0);
+		String deviceid = prefs.getString("deviceid", "unknownTablet");
+		
 		Calendar c = Calendar.getInstance();
 		SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy_h-m-s");
 		String formattedDate = df.format(c.getTime());
-		String filename = "SHIFFMANCAL_" + startDate + "_" + mostRecentDate + "_exported_"+ formattedDate + ".csv";
+		String filename = "SHIFFMANCAL_" + deviceid + "_" + startDate + "_" + mostRecentDate + "_exported_"+ formattedDate + ".csv";
 		File dir = new File(Environment.getExternalStorageDirectory(), "SHIFFMANCAL");
 		dir.mkdir();
 		return new File(dir, filename);
