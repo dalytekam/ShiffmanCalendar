@@ -15,8 +15,8 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.shiffmancalendar.DataEntryCalendar"
-            android:label="SC EnterData"
+            android:name="com.example.shiffmancalendar.Launcher"
+            android:label="Shiffman Calendar"
             android:icon="@drawable/icon_calendar_app">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,13 +25,23 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="com.example.shiffmancalendar.DataEntryCalendar"
+            android:label="SC EnterData"
+            android:icon="@drawable/icon_calendar_app">
+            <intent-filter>
+                <action android:name="android.intent.action.DEFAULT" />
+
+                <category android:name="android.intent.category.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name="com.example.shiffmancalendar.Configuration"
             android:label="SC UserConfig"
             android:icon="@drawable/icon_config_user">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.DEFAULT" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.VIEW" />
             </intent-filter>
         </activity>
         <activity
@@ -39,9 +49,9 @@
             android:label="SC HolidayConfig"
             android:icon="@drawable/icon_holiday_config" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.DEFAULT" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.VIEW" />
             </intent-filter>
         </activity>
         <activity
@@ -49,9 +59,9 @@
             android:label="SC ExportData"
             android:icon="@drawable/icon_export_data" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.DEFAULT" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.VIEW" />
             </intent-filter>
         </activity>
         <activity

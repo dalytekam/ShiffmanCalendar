@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_marginTop="25dp" >
 				    
@@ -9,33 +9,90 @@
         android:id="@+id/tableRow1"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginBottom="20dp" >
+        android:layout_weight="1" >
 
         <ImageButton
             android:id="@+id/imageButton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_config_user" />
+            android:src="@drawable/icon_config_user_256"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp" />
 
         <ImageButton
             android:id="@+id/imageButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_holiday_config" />
+            android:src="@drawable/icon_holiday_config_256"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp" />
+        
 
         <ImageButton
             android:id="@+id/imageButton3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_calendar_app" />
+            android:src="@drawable/icon_calendar_app_256"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp" />
 
         <ImageButton
             android:id="@+id/imageButton4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_export_data" />
+            android:src="@drawable/icon_export_data_256"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp" />
+        
+    </TableRow>
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="20dp" >
+        
+        <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Configuration"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+        <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Holiday Labels "
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+        <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calendar Entry"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+        <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Export   "
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
         
     </TableRow>
 
+    
 </TableLayout>

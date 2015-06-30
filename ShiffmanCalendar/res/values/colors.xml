@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     <color android:layout_width="wrap_content" android:id="@+id/color1" android:layout_height="wrap_content" name="LightGreen">#90EE90</color>
-    <color android:layout_width="wrap_content" android:id="@+id/color1" android:layout_height="wrap_content" name="LightBlue">#87CEFA</color>
+    <color android:layout_width="wrap_content" android:id="@+id/color2" android:layout_height="wrap_content" name="LightBlue">#87CEFA</color>
+    <color android:layout_width="wrap_content" android:id="@+id/color3" android:layout_height="wrap_content" name="White">#FFFFFF</color>
 </resources>
