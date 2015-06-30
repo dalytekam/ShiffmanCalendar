@@ -124,7 +124,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	public int removeDefaultIDRows() {
 		SQLiteDatabase db = this.getWritableDatabase();
 		
-		return db.delete(TABLE_NAME, KEY_PID + " +?", new String[] {"default"});
+		return db.delete(TABLE_NAME, KEY_PID + " =?", new String[] {"default"});
 	}
 	
 	public List<ContentValues> getAllEntries(String pid, String session, Time startDate) {
