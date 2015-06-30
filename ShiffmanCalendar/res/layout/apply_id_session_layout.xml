@@ -4,83 +4,123 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enter participant ID:"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_marginTop="25dp" />
+    <TableLayout
+	    android:id="@+id/tableLayout1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:layout_marginTop="25dp" >
+				    
+	    <TableRow
+	        android:id="@+id/tableRow1"
+	        android:layout_width="fill_parent"
+	        android:layout_height="0dp"
+	        android:layout_weight="1"
+	        android:layout_marginBottom="20dp" >
+		    <TextView
+		        android:id="@+id/textView1"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Enter participant ID:"
+		        android:textAppearance="?android:attr/textAppearanceLarge"
+		        android:gravity="center"
+		        android:layout_gravity="center"
+		        android:layout_marginRight="25dp" />
+		    
+		    <TextView
+		        android:id="@+id/textView2"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Re-enter participant ID:"
+		        android:textAppearance="?android:attr/textAppearanceLarge"
+		        android:gravity="center"
+		        android:layout_gravity="center" />
+	    </TableRow>
+	    <TableRow
+	        android:id="@+id/tableRow1"
+	        android:layout_width="fill_parent"
+	        android:layout_height="0dp"
+	        android:layout_weight="1"
+	        android:layout_marginBottom="20dp" >
 
-    <EditText
-        android:id="@+id/pid_editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp" >
+		    <EditText
+		        android:id="@+id/pid_editText"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:ems="10"
+		        android:gravity="center"
+		        android:layout_gravity="center"
+		        android:layout_marginBottom="20dp"
+		        android:layout_marginRight="25dp" >
+		
+		        <requestFocus />
+		    </EditText>
+		    
+	        <EditText
+		        android:id="@+id/pid_editText2"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:ems="10"
+		       	android:gravity="center"
+		        android:layout_gravity="center"
+		        android:layout_marginBottom="20dp" />
+	    </TableRow>
+    
+    	<TableRow
+	        android:id="@+id/tableRow1"
+	        android:layout_width="fill_parent"
+	        android:layout_height="0dp"
+	        android:layout_weight="1"
+	        android:layout_marginBottom="20dp" >
 
-        <requestFocus />
-    </EditText>
+		    <TextView
+		        android:id="@+id/textView3"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Enter session number:"
+		        android:textAppearance="?android:attr/textAppearanceLarge"
+		        android:gravity="center"
+		        android:layout_gravity="center"
+		        android:layout_marginRight="25dp" />
+		    
+		    <TextView
+		        android:id="@+id/textView4"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Re-enter session number:"
+		        android:textAppearance="?android:attr/textAppearanceLarge"
+		        android:gravity="center"
+		        android:layout_gravity="center" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Re-enter participant ID:"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:gravity="center"
-        android:layout_gravity="center" />
+	    </TableRow>
+	    <TableRow
+	        android:id="@+id/tableRow1"
+	        android:layout_width="fill_parent"
+	        android:layout_height="0dp"
+	        android:layout_weight="1" >
 
-    <EditText
-        android:id="@+id/pid_editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-       	android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enter session number:"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:gravity="center"
-        android:layout_gravity="center" />
-
-    <EditText
-        android:id="@+id/session_editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Re-enter session number:"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:gravity="center"
-        android:layout_gravity="center" />
-
-    <EditText
-        android:id="@+id/session_editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp" />
+		    <EditText
+		        android:id="@+id/session_editText"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:ems="10"
+		        android:inputType="number"
+		        android:gravity="center"
+		        android:layout_gravity="center"
+		        android:layout_marginBottom="20dp"
+		        android:layout_marginRight="25dp" />
+		    
+		    <EditText
+		        android:id="@+id/session_editText2"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:ems="10"
+		        android:inputType="number"
+		        android:gravity="center"
+		        android:layout_gravity="center"
+		        android:layout_marginBottom="20dp" />
+	    </TableRow>
+    </TableLayout>
     
     <RelativeLayout
     	android:layout_width="wrap_content"
