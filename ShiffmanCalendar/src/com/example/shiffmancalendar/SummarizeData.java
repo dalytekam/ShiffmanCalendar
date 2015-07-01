@@ -26,7 +26,7 @@ import android.widget.TextView;
 public class SummarizeData extends Activity {
 
 	TableLayout table;
-	Button delete, applyID;
+	Button applyID;
 	Context context;
 	
 	@Override
@@ -39,37 +39,7 @@ public class SummarizeData extends Activity {
 //		table.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		setContentView(R.layout.summarize_layout);
 		table = (TableLayout) findViewById(R.id.summary_table);
-		delete = (Button) findViewById(R.id.delete_button);
 		applyID = (Button) findViewById(R.id.applyID_button);
-		
-		delete.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				AlertDialog.Builder builder = new AlertDialog.Builder(context);
-		        builder.setTitle("Delete this participant's data?").setMessage("This action will DELETE data from the database! This CANNOT be undone! Are you sure you want to do this?")
-		               .setPositiveButton("Yes, delete data", new DialogInterface.OnClickListener() {
-		                   public void onClick(DialogInterface dialog, int id) {
-			       				DBHelper db = new DBHelper(context);
-			       				int rowsUpdated = db.removeDefaultIDRows();
-			    				
-			       				showFeedbackDialog(rowsUpdated);
-		                   }
-		               })
-		               .setNegativeButton("No, don't delete data!", new DialogInterface.OnClickListener() {
-		                   public void onClick(DialogInterface dialog, int id) {
-		                       // User cancelled the dialog
-		                	   //finish();
-		                   }
-		               })
-		               .setCancelable(false);
-		        // Create the AlertDialog object and return it
-		        AlertDialog dialog = builder.create();
-		        dialog.show();
-		        
-			}
-			
-		});
 		
 		applyID.setOnClickListener(new OnClickListener() {
 
@@ -158,22 +128,6 @@ public class SummarizeData extends Activity {
             vline1.setBackgroundColor(Color.BLACK);
             table.addView(vline1); // add line below heading
         }
-	}
-
-
-
-	private void showFeedbackDialog(final int rowsUpdated) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Participant data deleted.").setMessage("" + rowsUpdated + " database entries have been deleted.")
-               .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
-                   public void onClick(DialogInterface dialog, int id) {
-	       				finish();
-                   }
-               })
-               .setCancelable(false);
-        // Create the AlertDialog object and return it
-        AlertDialog dialog = builder.create();
-        dialog.show();
 	}
 
 }
