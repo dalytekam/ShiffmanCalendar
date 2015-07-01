@@ -1,13 +1,11 @@
 package com.example.shiffmancalendar;
 
-import java.util.Calendar;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,11 +20,14 @@ public class ApplyIDAndSession extends Activity {
 	Button save, cancel;
 	String study;
 	
+	Intent resultIntent;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		context = this;
+		resultIntent = new Intent();
 		setContentView(R.layout.apply_id_session_layout);
 		
 		id = (EditText) findViewById(R.id.pid_editText);
@@ -99,6 +100,8 @@ public class ApplyIDAndSession extends Activity {
 		                   public void onClick(DialogInterface dialog, int id) {
 			       				DBHelper db = new DBHelper(context);
 			       				int rowsUpdated = db.applyIDAndSession(idValue, sessionValue);
+			    				resultIntent.putExtra("pid", idValue);
+			    				resultIntent.putExtra("session", sessionValue);
 			    				
 			       				showFeedbackDialog(rowsUpdated);
 		                   }
@@ -106,7 +109,6 @@ public class ApplyIDAndSession extends Activity {
 		               .setNegativeButton("No, don't apply!", new DialogInterface.OnClickListener() {
 		                   public void onClick(DialogInterface dialog, int id) {
 		                       // User cancelled the dialog
-		                	   finish();
 		                   }
 		               })
 		               .setCancelable(false);
@@ -120,7 +122,8 @@ public class ApplyIDAndSession extends Activity {
 		        builder.setTitle("Participant ID and session applied.").setMessage("" + rowsUpdated + " database entries have been updated.")
 		               .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
 		                   public void onClick(DialogInterface dialog, int id) {
-			       				finish();
+		                	   setResult(RESULT_OK, resultIntent);
+		                	   finish();
 		                   }
 		               })
 		               .setCancelable(false);

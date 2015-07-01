@@ -39,6 +39,10 @@ public class SummarizeData extends Activity {
 												  };
 	List<String> columnFilter;
 	
+	public static final int APPLY_ID_REQUEST = 1;
+	String pid = null;
+	String sessionNum = null;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -65,8 +69,8 @@ public class SummarizeData extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getApplicationContext(), ApplyIDAndSession.class);
-				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				startActivity(intent);
+				//intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivityForResult(intent, APPLY_ID_REQUEST);
 			}
 			
 		});
@@ -76,6 +80,20 @@ public class SummarizeData extends Activity {
 	
 	
 	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		System.out.println("entered onActivityResult " + requestCode + " " + resultCode);
+		if (requestCode == APPLY_ID_REQUEST && resultCode == RESULT_OK) {
+			System.out.println("GOT DATA BACK!");
+			pid = data.getStringExtra("pid");
+			sessionNum = data.getStringExtra("session");
+		}
+	}
+
+
+
+	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
@@ -83,6 +101,11 @@ public class SummarizeData extends Activity {
 		SharedPreferences prefs = getSharedPreferences("shiffman_calendar", 0);
 		String id = prefs.getString("id", "unknown");
 		String session = prefs.getString("session", "unknown");
+		
+		if (pid != null && sessionNum != null) {
+			id = pid;
+			session = sessionNum;
+		}
 		
 		DBHelper db = new DBHelper(this);
 		List<ContentValues> data = db.getAllEntries(id, session, null);
