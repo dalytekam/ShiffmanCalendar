@@ -25,6 +25,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String KEY_SESSION = "session";
 	public static final String KEY_DATE = "date";
 	public static final String KEY_CIG_COUNT = "cig_count";
+	public static final String KEY_NRES_CIG_COUNT = "nres_cig_count";
 	public static final String KEY_GUM_COUNT = "gum_count";
 	public static final String KEY_OTHER_COUNT = "other_count";
 	public static final String KEY_OTHER_TYPE_1 = "other_type_1";
@@ -42,9 +43,11 @@ public class DBHelper extends SQLiteOpenHelper {
 	private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "("
             + KEY_ID + " INTEGER PRIMARY KEY," + KEY_DATE_ENTERED + " INTEGER, "
 			+ KEY_PID + " TEXT, " + KEY_STUDY + " TEXT, " + KEY_SESSION + " TEXT, "
-			+ KEY_DATE + " INTEGER," + KEY_CIG_COUNT + " INTEGER, "  + KEY_GUM_COUNT + " INTEGER, " + KEY_OTHER_COUNT + " INTEGER, "
+			+ KEY_DATE + " INTEGER," + KEY_CIG_COUNT + " INTEGER, " + KEY_NRES_CIG_COUNT + " INTEGER, " 
+			+ KEY_GUM_COUNT + " INTEGER, " + KEY_OTHER_COUNT + " INTEGER, "
             + KEY_OTHER_TYPE_1 + " TEXT, " + KEY_OTHER_FREE_1 + " TEXT, "
             + KEY_OTHER_TYPE_2 + " TEXT, " + KEY_OTHER_FREE_2 + " TEXT" + ")";
+	
 	
 	SharedPreferences prefs;
 	

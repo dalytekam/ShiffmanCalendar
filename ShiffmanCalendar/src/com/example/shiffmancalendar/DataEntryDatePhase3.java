@@ -16,14 +16,14 @@ import android.widget.Toast;
 public class DataEntryDatePhase3 extends DataEntryDate {
 
 	TextView title;
-	EditText cigs;
+	EditText cigs, nresCigs;
 	EditText otherNicCnt;
 	Spinner otherNic1, otherNic2;
 	EditText otherFree1, otherFree2;
 	Button cancel;
 	Button save;
 	
-	String[] otherNicSource = {"", "Non-research cigarette", "E-cigarette", "Smokeless Tobacco",
+	String[] otherNicSource = {"", "E-cigarette", "Smokeless Tobacco",
 							   "Cigar", "Hookah", "Pipe", "Other"};
 
 	@Override
@@ -34,6 +34,7 @@ public class DataEntryDatePhase3 extends DataEntryDate {
 		
 		title = (TextView) findViewById(R.id.title);
 		cigs = (EditText) findViewById(R.id.p3_editText1);
+		nresCigs = (EditText) findViewById(R.id.p3_editText7);
 		otherNicCnt = (EditText) findViewById(R.id.p3_editText2);
 		otherNic1 = (Spinner) findViewById(R.id.dropdown1);
 		otherNic2 = (Spinner) findViewById(R.id.dropdown2);
@@ -50,6 +51,7 @@ public class DataEntryDatePhase3 extends DataEntryDate {
 		
 		if (super.existingData != null) {
 			cigs.setText(super.existingData.getAsString(DBHelper.KEY_CIG_COUNT));
+			nresCigs.setText(super.existingData.getAsString(DBHelper.KEY_NRES_CIG_COUNT));
 			otherNicCnt.setText(super.existingData.getAsString(DBHelper.KEY_OTHER_COUNT));
 			int nicCnt = Integer.parseInt(super.existingData.getAsString(DBHelper.KEY_OTHER_COUNT));
 			if (nicCnt > 0) {
@@ -126,13 +128,15 @@ public class DataEntryDatePhase3 extends DataEntryDate {
 			@Override
 			public void onClick(View v) {
 				String cig_count = cigs.getText().toString();
+				String nres_cig_count = nresCigs.getText().toString();
 				String other_count = otherNicCnt.getText().toString();
 				String other_type1 = (String) otherNic1.getSelectedItem();
 				String other_type2 = (String) otherNic2.getSelectedItem();
 				String other_free1 = otherFree1.getText().toString();
 				String other_free2 = otherFree2.getText().toString();
 				
-				if (!checkCount(cig_count, "Please enter the number of cigarettes smoked.")) return;
+				if (!checkCount(cig_count, "Please enter the number of research cigarettes smoked.")) return;
+				if (!checkCount(nres_cig_count, "Please enter the number of non-research cigarettes smoked.")) return;
 				if (!checkCount(other_count, "Please enter the number of other nicotine sources used.")) return;
 				if (!checkSourceSelected(other_count, other_type1)) return;
 				if (!checkOtherSelected(other_type1, other_free1)) return;
@@ -141,6 +145,7 @@ public class DataEntryDatePhase3 extends DataEntryDate {
 				ContentValues values = initContentValues();
 				values.put(DBHelper.KEY_DATE, date);
 				values.put(DBHelper.KEY_CIG_COUNT, cig_count);
+				values.put(DBHelper.KEY_NRES_CIG_COUNT, nres_cig_count);
 				values.put(DBHelper.KEY_OTHER_COUNT, other_count);
 				values.put(DBHelper.KEY_OTHER_TYPE_1, other_type1);
 				values.put(DBHelper.KEY_OTHER_FREE_1, other_free1);

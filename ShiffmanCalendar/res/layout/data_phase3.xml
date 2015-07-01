@@ -26,7 +26,7 @@
         android:id="@+id/field1Text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Number of cigarettes smoked:"
+        android:text="Number of research cigarettes smoked:"
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -41,6 +41,26 @@
         android:layout_marginBottom="20dp" >
 
         <requestFocus />
+    </EditText>
+    
+    <TextView
+        android:id="@+id/field7Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Number of non-research cigarettes smoked:"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/p3_editText7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp" >
+
     </EditText>
     
     <TextView
