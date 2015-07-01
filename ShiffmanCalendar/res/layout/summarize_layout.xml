@@ -24,7 +24,6 @@
         android:id="@+id/applyID_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/delete_button"
         android:layout_gravity="center"
         android:text="Apply participant ID"
         android:layout_marginBottom="25dp" />
