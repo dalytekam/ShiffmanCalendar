@@ -48,6 +48,15 @@
             android:layout_marginRight="30dp"
             android:layout_marginLeft="30dp" />
         
+        <ImageButton
+            android:id="@+id/imageButton5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_user_guide_256"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp" />
+        
     </TableRow>
     <TableRow
         android:id="@+id/tableRow1"
@@ -88,6 +97,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Export   "
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+        <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Guide"
         android:gravity="center"
         android:layout_gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge" />

@@ -1,12 +1,20 @@
 package com.example.shiffmancalendar;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -15,7 +23,7 @@ import android.widget.Toast;
 
 public class Launcher extends Activity {
 
-	ImageButton config, holiday, calendar, export;
+	ImageButton config, holiday, calendar, export, guide;
 	SharedPreferences prefs;
 	Editor edit;
 	
@@ -33,6 +41,7 @@ public class Launcher extends Activity {
 		holiday = (ImageButton) findViewById(R.id.imageButton2);
 		calendar = (ImageButton) findViewById(R.id.imageButton3);
 		export = (ImageButton) findViewById(R.id.imageButton4);
+		guide = (ImageButton) findViewById(R.id.imageButton5);
 		
 		config.setOnClickListener(new OnClickListener() {
 
@@ -74,6 +83,63 @@ public class Launcher extends Activity {
 				Intent intent = new Intent(getApplicationContext(), DataExport.class);
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(intent);
+			}
+			
+		});
+		
+		guide.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				File userGuide = copyUserGuideToSDCard();
+				Uri targetUri = Uri.fromFile(userGuide);
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setDataAndType(targetUri, "application/msword");
+                startActivityForResult(intent, 0);
+			}
+
+			private File copyUserGuideToSDCard() {
+				File output = new File(Environment.getExternalStorageDirectory(), "SHIFFMANCAL");
+				output.mkdir();
+				output = new File(output, "shiffman_calendar_guide.docx");
+				
+				if (output.exists()) {
+					return output;
+				}
+				
+				InputStream in = getResources().openRawResource(R.raw.shiffman_calendar_guide);
+				FileOutputStream out = null;
+				try {
+					out = new FileOutputStream(output);
+					byte[] buff = new byte[1024];
+					int read = 0;
+
+				   while ((read = in.read(buff)) > 0) {
+				      out.write(buff, 0, read);
+				   }
+				   in.close();
+				   out.close();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} finally {
+				     try {
+						in.close();
+						if (out != null) {
+							out.close();
+						}
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				    
+				}
+				
+				return output;
+				
 			}
 			
 		});
