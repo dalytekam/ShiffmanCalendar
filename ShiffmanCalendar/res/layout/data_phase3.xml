@@ -11,7 +11,7 @@
         android:text="Enter data for date:"
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="15dp" />
     
     <View
         android:id="@+id/horizontal_line"
@@ -195,7 +195,7 @@
     	android:layout_width="wrap_content"
     	android:layout_height="match_parent"
     	android:orientation="vertical"
-    	android:layout_marginTop="50dp"
+    	android:layout_marginTop="35dp"
     	android:layout_gravity="center" >
         
     <Button

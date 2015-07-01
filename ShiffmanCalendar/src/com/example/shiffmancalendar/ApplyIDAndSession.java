@@ -148,7 +148,9 @@ public class ApplyIDAndSession extends Activity {
 	private boolean checkSettingsExist(String id, String session, String study) {
 		
 		DBHelper db = new DBHelper(context);
-		
+		if (id.equalsIgnoreCase("9999")) { // 9999 is the id used for disqualified participants only.
+			return false;
+		}
 		return db.participantSettingsExist(id, session, study);
 	}
 }
