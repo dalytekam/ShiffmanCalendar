@@ -7,11 +7,13 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +27,7 @@ public class DataEntryDatePhase3 extends DataEntryDate {
 	EditText otherFree1, otherFree2;
 	Button cancel;
 	Button save;
+	ScrollView scroll;
 	
 	String[] otherNicSource = {"", "E-cigarette", "Smokeless Tobacco",
 							   "Cigar", "Hookah", "Pipe", "Other"};
@@ -53,6 +56,7 @@ public class DataEntryDatePhase3 extends DataEntryDate {
 		otherText3.setTextColor(Color.LTGRAY);
 		otherText4 = (TextView) findViewById(R.id.field6Text);
 		otherText4.setTextColor(Color.LTGRAY);
+		scroll = (ScrollView) findViewById(R.id.scrollView1);
 		
 		title.setText(title.getText() + "\n" + super.formattedDate);
 		
@@ -94,6 +98,31 @@ public class DataEntryDatePhase3 extends DataEntryDate {
 			}
 		}
 		
+		nresCigs.setOnFocusChangeListener(new OnFocusChangeListener() {
+
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if (hasFocus) {
+					scroll.smoothScrollTo(0, nresCigs.getBottom());
+					//scroll.fullScroll(ScrollView.FOCUS_UP);
+				}
+			}
+			
+		});
+		
+		otherNicCnt.setOnFocusChangeListener(new OnFocusChangeListener() {
+
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if (hasFocus) {
+					scroll.smoothScrollTo(0, otherNicCnt.getBottom());
+					//scroll.fullScroll(ScrollView.FOCUS_UP);
+				}
+			}
+			
+		});
+		
+		
 		otherNicCnt.addTextChangedListener(new TextWatcher() {
 
 			@Override
@@ -112,7 +141,7 @@ public class DataEntryDatePhase3 extends DataEntryDate {
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				if (!s.toString().equalsIgnoreCase("") && Integer.parseInt(s.toString()) > 0) {
+				if (!s.toString().equalsIgnoreCase("") && !s.toString().endsWith(".") && Integer.parseInt(s.toString()) > 0) {
 					otherText1.setTextColor(Color.BLACK);
 					otherText3.setTextColor(Color.BLACK);
 					otherNic1.setClickable(true);
