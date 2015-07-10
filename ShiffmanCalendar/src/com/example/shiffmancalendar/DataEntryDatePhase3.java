@@ -1,7 +1,10 @@
 package com.example.shiffmancalendar;
 
 import android.content.ContentValues;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -15,7 +18,7 @@ import android.widget.Toast;
 
 public class DataEntryDatePhase3 extends DataEntryDate {
 
-	TextView title;
+	TextView title, otherText1, otherText2, otherText3, otherText4;
 	EditText cigs, nresCigs;
 	EditText otherNicCnt;
 	Spinner otherNic1, otherNic2;
@@ -42,6 +45,14 @@ public class DataEntryDatePhase3 extends DataEntryDate {
 		otherFree2 = (EditText) findViewById(R.id.otherText2);
 		cancel = (Button) findViewById(R.id.p3_cancel_button);
 		save = (Button) findViewById(R.id.p3_save_button);
+		otherText1 = (TextView) findViewById(R.id.field3Text);
+		otherText1.setTextColor(Color.LTGRAY);
+		otherText2 = (TextView) findViewById(R.id.field4Text);
+		otherText2.setTextColor(Color.LTGRAY);
+		otherText3 = (TextView) findViewById(R.id.field5Text);
+		otherText3.setTextColor(Color.LTGRAY);
+		otherText4 = (TextView) findViewById(R.id.field6Text);
+		otherText4.setTextColor(Color.LTGRAY);
 		
 		title.setText(title.getText() + "\n" + super.formattedDate);
 		
@@ -65,8 +76,66 @@ public class DataEntryDatePhase3 extends DataEntryDate {
 				
 				otherFree1.append(super.existingData.getAsString(DBHelper.KEY_OTHER_FREE_1));
 				otherFree2.append(super.existingData.getAsString(DBHelper.KEY_OTHER_FREE_2));
+				
+				otherText1.setTextColor(Color.BLACK);
+				otherText2.setTextColor(Color.BLACK);
+				otherText3.setTextColor(Color.BLACK);
+				otherText4.setTextColor(Color.BLACK);
+				
+				otherNic1.setClickable(true);
+				otherNic2.setClickable(true);
+				
+				if (!otherFree1.getText().toString().equalsIgnoreCase("")) {
+					otherFree1.setEnabled(true);
+				}
+				if (!otherFree2.getText().toString().equalsIgnoreCase("")) {
+					otherFree2.setEnabled(true);
+				}
 			}
 		}
+		
+		otherNicCnt.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				if (!s.toString().equalsIgnoreCase("") && Integer.parseInt(s.toString()) > 0) {
+					otherText1.setTextColor(Color.BLACK);
+					otherText3.setTextColor(Color.BLACK);
+					otherNic1.setClickable(true);
+					otherNic2.setClickable(true);
+				} else {
+					otherText1.setTextColor(Color.LTGRAY);
+					otherText3.setTextColor(Color.LTGRAY);
+					otherNic1.setSelection(0);
+					otherNic1.setClickable(false);
+					otherNic2.setSelection(0);
+					otherNic2.setClickable(false);
+					
+					otherText2.setTextColor(Color.LTGRAY);
+					otherText4.setTextColor(Color.LTGRAY);
+					otherFree1.setText("");
+					otherFree1.setEnabled(false);
+					otherFree2.setText("");
+					otherFree2.setEnabled(false);
+				}
+				
+			}
+			
+		});
 		
 		otherNic1.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -75,8 +144,10 @@ public class DataEntryDatePhase3 extends DataEntryDate {
 					int position, long id) {
 				
 				if (position == otherNicSource.length - 1) {
+					otherText2.setTextColor(Color.BLACK);
 					otherFree1.setEnabled(true);
 				} else {
+					otherText2.setTextColor(Color.LTGRAY);
 					otherFree1.setText("");
 					otherFree1.setEnabled(false);
 				}
@@ -85,6 +156,7 @@ public class DataEntryDatePhase3 extends DataEntryDate {
 			@Override
 			public void onNothingSelected(AdapterView<?> parent) {
 				
+				otherText2.setTextColor(Color.LTGRAY);
 				otherFree1.setText("");
 				otherFree1.setEnabled(false);
 			}
@@ -98,8 +170,10 @@ public class DataEntryDatePhase3 extends DataEntryDate {
 					int position, long id) {
 				
 				if (position == otherNicSource.length - 1) {
+					otherText4.setTextColor(Color.BLACK);
 					otherFree2.setEnabled(true);
 				} else {
+					otherText4.setTextColor(Color.LTGRAY);
 					otherFree2.setText("");
 					otherFree2.setEnabled(false);
 				}
@@ -108,6 +182,7 @@ public class DataEntryDatePhase3 extends DataEntryDate {
 			@Override
 			public void onNothingSelected(AdapterView<?> parent) {
 				
+				otherText4.setTextColor(Color.LTGRAY);
 				otherFree2.setText("");
 				otherFree2.setEnabled(false);
 			}
