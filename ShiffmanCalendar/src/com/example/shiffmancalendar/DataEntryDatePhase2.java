@@ -32,8 +32,8 @@ public class DataEntryDatePhase2 extends DataEntryDate {
 		title.setText(title.getText() + "\n" + super.formattedDate);
 		
 		if (super.existingData != null) {
-			cigs.setText(super.existingData.getAsString(DBHelper.KEY_CIG_COUNT));
-			gums.setText(super.existingData.getAsString(DBHelper.KEY_GUM_COUNT));
+			cigs.append(super.existingData.getAsString(DBHelper.KEY_CIG_COUNT));
+			gums.append(super.existingData.getAsString(DBHelper.KEY_GUM_COUNT));
 		}
 		
 		cancel.setOnClickListener(new OnClickListener() {

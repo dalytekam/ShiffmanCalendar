@@ -50,9 +50,9 @@ public class DataEntryDatePhase3 extends DataEntryDate {
 		otherNic2.setAdapter(adapter);
 		
 		if (super.existingData != null) {
-			cigs.setText(super.existingData.getAsString(DBHelper.KEY_CIG_COUNT));
-			nresCigs.setText(super.existingData.getAsString(DBHelper.KEY_NRES_CIG_COUNT));
-			otherNicCnt.setText(super.existingData.getAsString(DBHelper.KEY_OTHER_COUNT));
+			cigs.append(super.existingData.getAsString(DBHelper.KEY_CIG_COUNT));
+			nresCigs.append(super.existingData.getAsString(DBHelper.KEY_NRES_CIG_COUNT));
+			otherNicCnt.append(super.existingData.getAsString(DBHelper.KEY_OTHER_COUNT));
 			int nicCnt = Integer.parseInt(super.existingData.getAsString(DBHelper.KEY_OTHER_COUNT));
 			if (nicCnt > 0) {
 				String src1 = super.existingData.getAsString(DBHelper.KEY_OTHER_TYPE_1);
@@ -63,8 +63,8 @@ public class DataEntryDatePhase3 extends DataEntryDate {
 				int src2_pos = getNicSourceIndex(src2);
 				otherNic2.setSelection(src2_pos);
 				
-				otherFree1.setText(super.existingData.getAsString(DBHelper.KEY_OTHER_FREE_1));
-				otherFree2.setText(super.existingData.getAsString(DBHelper.KEY_OTHER_FREE_2));
+				otherFree1.append(super.existingData.getAsString(DBHelper.KEY_OTHER_FREE_1));
+				otherFree2.append(super.existingData.getAsString(DBHelper.KEY_OTHER_FREE_2));
 			}
 		}
 		
