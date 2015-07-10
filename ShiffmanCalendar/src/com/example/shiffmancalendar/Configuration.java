@@ -1,22 +1,22 @@
 package com.example.shiffmancalendar;
 
 import java.util.Calendar;
+import java.util.List;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 public class Configuration extends Activity {
@@ -85,7 +85,7 @@ public class Configuration extends Activity {
 				
 				int phase_checked = getSelectedPhase();
 				if (phase_checked == -1) {
-					Toast.makeText(getApplicationContext(), "You forgot to select a study phase!", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(), "You forgot to select a study!", Toast.LENGTH_SHORT).show();
 					return;
 				}
 				
@@ -93,11 +93,17 @@ public class Configuration extends Activity {
 					Toast.makeText(getApplicationContext(), "Start date must be equal to or before the end date", Toast.LENGTH_SHORT).show();
 					return;
 				}
+				
+         	   	if (unsavedData()) {
+         	   		showUnsavedDataDialog();
+         	   		return;
+         	   	}
 
 				AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		        builder.setTitle("Save Participant Configuration?").setMessage("This will overwrite the current participant configuration.")
 		               .setPositiveButton("Yes, save", new DialogInterface.OnClickListener() {
 		                   public void onClick(DialogInterface dialog, int id) {
+		                	   
 			       				save_data_to_prefs();
 			    				
 			    				finish();
@@ -132,6 +138,31 @@ public class Configuration extends Activity {
 		                       // User cancelled the dialog
 		                	   finish();
 		                   }
+		               });
+		        // Create the AlertDialog object and return it
+		        AlertDialog dialog = builder.create();
+		        dialog.show();
+			}
+			
+			private boolean unsavedData() {
+				// TODO Auto-generated method stub
+				DBHelper db = new DBHelper(getApplicationContext());
+				List<ContentValues> data = db.getAllEntries("default", "0", null);
+				
+				return data.size() > 0;
+			}
+			
+			private void showUnsavedDataDialog() {
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+		        builder.setTitle("Unsaved Data in Database!!!!").setMessage("There is unsaved data in the database. Please view the data summary and apply an ID to this data before changing the configuration.")
+		        	   .setCancelable(false)
+		               .setPositiveButton("View Data Summary", new DialogInterface.OnClickListener() {
+		                   public void onClick(DialogInterface dialog, int id) {
+		                	   
+			       				Intent intent = new Intent(getApplicationContext(), SummarizeData.class);
+			       				startActivity(intent);
+		                   }
+	
 		               });
 		        // Create the AlertDialog object and return it
 		        AlertDialog dialog = builder.create();
