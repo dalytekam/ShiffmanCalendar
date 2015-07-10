@@ -43,8 +43,8 @@ public class DBHelper extends SQLiteOpenHelper {
 	private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "("
             + KEY_ID + " INTEGER PRIMARY KEY," + KEY_DATE_ENTERED + " INTEGER, "
 			+ KEY_PID + " TEXT, " + KEY_STUDY + " TEXT, " + KEY_SESSION + " TEXT, "
-			+ KEY_DATE + " INTEGER," + KEY_CIG_COUNT + " INTEGER, " + KEY_NRES_CIG_COUNT + " INTEGER, " 
-			+ KEY_GUM_COUNT + " INTEGER, " + KEY_OTHER_COUNT + " INTEGER, "
+			+ KEY_DATE + " INTEGER," + KEY_CIG_COUNT + " TEXT, " + KEY_NRES_CIG_COUNT + " TEXT, " 
+			+ KEY_GUM_COUNT + " TEXT, " + KEY_OTHER_COUNT + " TEXT, "
             + KEY_OTHER_TYPE_1 + " TEXT, " + KEY_OTHER_FREE_1 + " TEXT, "
             + KEY_OTHER_TYPE_2 + " TEXT, " + KEY_OTHER_FREE_2 + " TEXT" + ")";
 	
