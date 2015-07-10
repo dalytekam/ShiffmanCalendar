@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -11,77 +11,120 @@
         android:text="Enter data for date:"
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_marginTop="15dp" />
+        android:layout_marginTop="5dp" />
     
     <View
         android:id="@+id/horizontal_line"
         android:layout_width="fill_parent"
 		android:layout_height="2dip"
 		android:background="#FF000000"
-		android:layout_marginTop="20dp"
-		android:layout_marginBottom="20dp"
-		android:layout_below="@+id/button2" />
+		android:layout_marginTop="5dp"
+		android:layout_marginBottom="10dp"
+		android:layout_below="@+id/title" />
     
-    <TextView
-        android:id="@+id/field1Text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Number of research cigarettes smoked:"
-        android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/p3_editText1"
+    <ScrollView
+        android:id="@+id/scrollView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp" >
+        android:layout_below="@+id/horizontal_line"
+        android:isScrollContainer="true"
+        android:fadeScrollbars="false"
+        android:layout_marginBottom="75dp"
+        android:layout_centerInParent="true" >
+            
+    <LinearLayout
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical" >
+		<TableLayout
+	    android:id="@+id/tableLayout1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center" >
+				    
+		    <TableRow
+	        android:id="@+id/tableRow1"
+	        android:layout_width="fill_parent"
+	        android:layout_height="0dp"
+	        android:layout_weight="1"
+	        android:layout_gravity="center"
+	        android:layout_marginBottom="15dp" >
+	            
+			    <TextView
+			        android:id="@+id/field1Text"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="Number of research cigarettes smoked:"
+			        android:gravity="right"
+			        android:textAppearance="?android:attr/textAppearanceMedium" />
+			
+			    <EditText
+			        android:id="@+id/p3_editText1"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:ems="10"
+			        android:inputType="numberDecimal"
+			        android:gravity="center"
+			        android:layout_gravity="center" >
 
-        <requestFocus />
-    </EditText>
+			    </EditText>
+		    </TableRow>
+		    
+		    <TableRow
+	        android:id="@+id/tableRow1"
+	        android:layout_width="fill_parent"
+	        android:layout_height="0dp"
+	        android:layout_weight="1"
+	        android:layout_gravity="center"
+	        android:layout_marginBottom="15dp" >
     
-    <TextView
-        android:id="@+id/field7Text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Number of non-research cigarettes smoked:"
-        android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/p3_editText7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp" >
-
-    </EditText>
+			    <TextView
+			        android:id="@+id/field7Text"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="Number of non-research cigarettes smoked:"
+			        android:gravity="right"
+			        android:textAppearance="?android:attr/textAppearanceMedium" />
+			
+			    <EditText
+			        android:id="@+id/p3_editText7"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:ems="10"
+			        android:inputType="numberDecimal"
+			        android:gravity="center"
+			        android:layout_gravity="center" >
+			
+			    </EditText>
+		    </TableRow>
+		    <TableRow
+	        android:id="@+id/tableRow1"
+	        android:layout_width="fill_parent"
+	        android:layout_height="0dp"
+	        android:layout_weight="1"
+	        android:layout_gravity="center"
+	        android:layout_marginBottom="15dp" >
     
-    <TextView
-        android:id="@+id/field2Text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Number of times other nicotine sources were used:"
-        android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/p3_editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp" >
-
-    </EditText>
+			    <TextView
+			        android:id="@+id/field2Text"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="Number of times other nicotine sources were used:"
+			        android:gravity="right"
+			        android:textAppearance="?android:attr/textAppearanceMedium" />
+			
+			    <EditText
+			        android:id="@+id/p3_editText2"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:ems="10"
+			        android:inputType="numberDecimal"
+			        android:gravity="center"
+			        android:layout_gravity="center" >
+			
+			    </EditText>
+    		</TableRow>
+    	</TableLayout>
     
     <TableLayout
 	    android:id="@+id/tableLayout1"
@@ -94,75 +137,35 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="0dp"
 	        android:layout_weight="1"
-	        android:layout_gravity="center" >
+	        android:layout_gravity="center"
+	        android:layout_marginBottom="5dp" >
 			     <TextView
 			        android:id="@+id/field3Text"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
 			        android:text="What product did you use?"
 			        android:layout_gravity="center"
-			        android:textAppearance="?android:attr/textAppearanceMedium"
-			        android:layout_marginRight="25dp" />
-			     
-			     <TextView
-			        android:id="@+id/field5Text"
-			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
-			        android:text="What product did you use?"
-			        android:layout_gravity="center"
+			        android:gravity="right"
 			        android:textAppearance="?android:attr/textAppearanceMedium" />
-		    </TableRow>
-		    <TableRow
-	        android:id="@+id/tableRow1"
-	        android:layout_width="fill_parent"
-	        android:layout_height="0dp"
-	        android:layout_weight="1"
-	        android:layout_gravity="center"
-	        android:layout_marginBottom="10dp" >
-			    <Spinner 
+			     
+			     <Spinner 
 			        android:id="@+id/dropdown1"
-			        android:layout_width="match_parent"
+			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
 			        android:layout_gravity="center"
-			        android:layout_marginRight="25dp">
+			        android:gravity="center"
+			        android:clickable="false">
 			    </Spinner>
 			    
-			    <Spinner 
-			        android:id="@+id/dropdown2"
-			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
-			        android:layout_gravity="center">
-			    </Spinner>
-			</TableRow>
-			<TableRow
-	        android:id="@+id/tableRow1"
-	        android:layout_width="fill_parent"
-	        android:layout_height="0dp"
-	        android:layout_weight="1"
-	        android:layout_gravity="center" >
-			     <TextView
+			    <TextView
 			        android:id="@+id/field4Text"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
 			        android:text="Other product used:"
 			        android:layout_gravity="center"
-			        android:textAppearance="?android:attr/textAppearanceMedium"
-			        android:layout_marginRight="25dp" />
-			     
-			     <TextView
-			        android:id="@+id/field6Text"
-			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
-			        android:text="Other product used:"
-			        android:layout_gravity="center"
+			        android:gravity="right"
 			        android:textAppearance="?android:attr/textAppearanceMedium" />
-			</TableRow>
-			<TableRow
-	        android:id="@+id/tableRow1"
-	        android:layout_width="fill_parent"
-	        android:layout_height="0dp"
-	        android:layout_weight="1"
-	        android:layout_gravity="center" >
+			    
 			    <EditText
 			        android:id="@+id/otherText1"
 			        android:layout_width="match_parent"
@@ -170,10 +173,45 @@
 			        android:ems="10"
 			        android:layout_gravity="center"
 			        android:enabled="false"
-			        android:layout_marginRight="25dp"
 			        android:gravity="center" >
 			
 			    </EditText>
+			     
+			     
+		    </TableRow>
+		    <TableRow
+	        android:id="@+id/tableRow1"
+	        android:layout_width="fill_parent"
+	        android:layout_height="0dp"
+	        android:layout_weight="1"
+	        android:layout_gravity="center" >
+			    
+			    <TextView
+			        android:id="@+id/field5Text"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="What product did you use?"
+			        android:layout_gravity="center"
+			        android:gravity="right"
+			        android:textAppearance="?android:attr/textAppearanceMedium" />
+			    
+			    <Spinner 
+			        android:id="@+id/dropdown2"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="center"
+			        android:gravity="center"
+			        android:clickable="false">
+			    </Spinner>
+			    
+			    <TextView
+			        android:id="@+id/field6Text"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="Other product used:"
+			        android:layout_gravity="center"
+			        android:gravity="right"
+			        android:textAppearance="?android:attr/textAppearanceMedium" />
 			    
 			    <EditText
 			        android:id="@+id/otherText2"
@@ -185,18 +223,25 @@
 			        android:gravity="center" >
 			
 			    </EditText>
-		    </TableRow>
-			     
 			    
-		</TableLayout>     
+			</TableRow>
+			
+		</TableLayout>    
+		
+    </LinearLayout>
+    
+    </ScrollView>
 			    
     
     <RelativeLayout
     	android:layout_width="wrap_content"
-    	android:layout_height="match_parent"
+    	android:layout_height="wrap_content"
     	android:orientation="vertical"
     	android:layout_marginTop="35dp"
-    	android:layout_gravity="center" >
+    	android:layout_gravity="center"
+    	android:layout_alignParentBottom="true"
+    	android:layout_marginBottom="15dp"
+    	android:layout_centerInParent="true" >
         
     <Button
         android:id="@+id/p3_cancel_button"
@@ -215,5 +260,6 @@
         android:layout_toRightOf="@+id/p3_cancel_button" />
     
     </RelativeLayout>
+    
 
-</LinearLayout>
+</RelativeLayout>
