@@ -54,31 +54,33 @@ public class DataExport extends Activity {
 		List<String> dates = generateListOfDates();
 		ArrayAdapter<String> dateAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_dropdown_item_1line, dates);
 		dateSpinner.setAdapter(dateAdapter);
+		dateSpinner.setEnabled(false);
+		dateSpinner.setVisibility(View.INVISIBLE);
 		
 		export.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				String selectedDate = (String) dateSpinner.getSelectedItem();
-				if (selectedDate.equalsIgnoreCase("")) {
-					Toast.makeText(context, "Please select a start date", Toast.LENGTH_SHORT).show();
-					return;
-				}
+//				String selectedDate = (String) dateSpinner.getSelectedItem();
+//				if (selectedDate.equalsIgnoreCase("")) {
+//					Toast.makeText(context, "Please select a start date", Toast.LENGTH_SHORT).show();
+//					return;
+//				}
 
-				SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
-				Date parsedDate = null;
-				try {
-					parsedDate = format1.parse(selectedDate);
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					Toast.makeText(context, "Date parse failed", Toast.LENGTH_SHORT).show();
-					return;
-				}
+//				SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+//				Date parsedDate = null;
+//				try {
+//					parsedDate = format1.parse(selectedDate);
+//				} catch (ParseException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//					Toast.makeText(context, "Date parse failed", Toast.LENGTH_SHORT).show();
+//					return;
+//				}
 				
-				Time t = new Time();
-				t.set(parsedDate.getTime());
-				System.out.println("Date in millis: " + t.toMillis(false));
+//				Time t = new Time();
+//				t.set(parsedDate.getTime());
+//				System.out.println("Date in millis: " + t.toMillis(false));
 				
 				SharedPreferences prefs = context.getSharedPreferences("shiffman_calendar", 0);
 				String id = prefs.getString("id", "unknown");
@@ -91,7 +93,7 @@ public class DataExport extends Activity {
 				
 				printToScreen("Loading data...");
 				DBHelper db = new DBHelper(context);
-				List<ContentValues> data = db.getAllEntries(null, null, t);
+				List<ContentValues> data = db.getAllEntries(null, null, null);
 				List<String> columns = db.getColumns(0);
 				
 				printToScreen("Generating CSV file...");
@@ -101,7 +103,8 @@ public class DataExport extends Activity {
 				
 				printToScreen("Writing to file...");
 				String mostRecent = (String) dateSpinner.getItemAtPosition(1);
-				File output = generateFile(selectedDate, mostRecent);
+				String firstDate = (String) dateSpinner.getItemAtPosition(dateSpinner.getCount() - 1);
+				File output = generateFile(firstDate, mostRecent);
 				String filename = output.getName();
 				String success = writeToCSV(csvText, output);
 				

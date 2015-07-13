@@ -9,7 +9,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select the date from which to start exporting.\n\nAll data entered into the database after that date will be exported to a file."
+        android:text="Click the export data button to generate a new .csv file.\n\nAll data collected on this device to date will be exported."
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_gravity="center" />
 
