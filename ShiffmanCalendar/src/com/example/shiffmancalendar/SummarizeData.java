@@ -35,6 +35,10 @@ public class SummarizeData extends Activity {
 													{ DBHelper.KEY_CIG_COUNT, DBHelper.KEY_NRES_CIG_COUNT,
 													  DBHelper.KEY_OTHER_COUNT, DBHelper.KEY_OTHER_TYPE_1,
 													  DBHelper.KEY_OTHER_FREE_1, DBHelper.KEY_OTHER_TYPE_2,
+													  DBHelper.KEY_OTHER_FREE_2 },
+												    { DBHelper.KEY_CIG_COUNT, DBHelper.KEY_NRES_CIG_COUNT,
+													  DBHelper.KEY_OTHER_COUNT, DBHelper.KEY_OTHER_TYPE_1,
+													  DBHelper.KEY_OTHER_FREE_1, DBHelper.KEY_OTHER_TYPE_2,
 													  DBHelper.KEY_OTHER_FREE_2 }
 												  };
 	List<String> columnFilter;
