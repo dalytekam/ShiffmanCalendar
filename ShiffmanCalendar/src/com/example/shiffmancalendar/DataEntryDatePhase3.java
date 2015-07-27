@@ -1,6 +1,7 @@
 package com.example.shiffmancalendar;
 
 import android.content.ContentValues;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.Spinner;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +30,7 @@ public class DataEntryDatePhase3 extends DataEntryDate {
 	Button cancel;
 	Button save;
 	ScrollView scroll;
+	SharedPreferences prefs;
 	
 	String[] otherNicSource = {"", "E-cigarette", "Smokeless Tobacco",
 							   "Cigar", "Hookah", "Pipe", "Other"};
@@ -63,6 +66,16 @@ public class DataEntryDatePhase3 extends DataEntryDate {
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, otherNicSource);
 		otherNic1.setAdapter(adapter);
 		otherNic2.setAdapter(adapter);
+		
+		prefs = getSharedPreferences("shiffman_calendar", 0);
+		int study = prefs.getInt("phase", 3);
+		if (study == 2) { // LONIC Visit 1
+			TableRow row = (TableRow) findViewById(R.id.tableRow2);
+			TextView cigLabel = (TextView) findViewById(R.id.field1Text);
+			row.setVisibility(View.GONE);
+			row.setEnabled(false);
+			cigLabel.setText("Number of cigarettes smoked: ");
+		}
 		
 		if (super.existingData != null) {
 			cigs.append(super.existingData.getAsString(DBHelper.KEY_CIG_COUNT));
@@ -238,9 +251,12 @@ public class DataEntryDatePhase3 extends DataEntryDate {
 				String other_type2 = (String) otherNic2.getSelectedItem();
 				String other_free1 = otherFree1.getText().toString();
 				String other_free2 = otherFree2.getText().toString();
-				
-				if (!checkCount(cig_count, "Please enter the number of research cigarettes smoked.")) return;
-				if (!checkCount(nres_cig_count, "Please enter the number of non-research cigarettes smoked.")) return;
+				if (prefs.getInt("phase", 3) == 2) {
+					if (!checkCount(cig_count, "Please enter the number of cigarettes smoked.")) return;
+				} else {
+					if (!checkCount(cig_count, "Please enter the number of research cigarettes smoked.")) return;
+					if (!checkCount(nres_cig_count, "Please enter the number of non-research cigarettes smoked.")) return;
+				}
 				if (!checkCount(other_count, "Please enter the number of other nicotine sources used.")) return;
 				if (!checkSourceSelected(other_count, other_type1)) return;
 				if (!checkOtherSelected(other_type1, other_free1)) return;
