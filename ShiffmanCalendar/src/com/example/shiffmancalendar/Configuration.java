@@ -30,7 +30,7 @@ public class Configuration extends Activity {
 	Button cancel;
 	Button save;
 	
-	public static final String[] phaseNames = {"QUITS-Baseline", "QUITS-Experimental", "LONIC"};
+	public static final String[] phaseNames = {"QUITS-Baseline", "QUITS-Experimental", "LONIC-Visit_1", "LONIC-Visits_2-11"};
 	
 	Context context;
 	
@@ -43,10 +43,11 @@ public class Configuration extends Activity {
 		
 //		id = (EditText) findViewById(R.id.config_id_editText);
 //		session = (EditText) findViewById(R.id.config_session_editText);
-		phase = new RadioButton[3];
+		phase = new RadioButton[4];
 		phase[0] = (RadioButton) findViewById(R.id.config_phase1);
 		phase[1] = (RadioButton) findViewById(R.id.config_phase2);
 		phase[2] = (RadioButton) findViewById(R.id.config_phase3);
+		phase[3] = (RadioButton) findViewById(R.id.config_phase4);
 		for (int i=0; i<phase.length; i++) {
 			phase[i].setText(phaseNames[i]);
 		}

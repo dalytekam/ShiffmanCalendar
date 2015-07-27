@@ -117,6 +117,13 @@
 				        android:layout_height="wrap_content"
 				        android:text="Phase 3"
 				        android:layout_margin="10dp" />
+				    
+				    <RadioButton
+				        android:id="@+id/config_phase4"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:text="Phase 4"
+				        android:layout_margin="10dp" />
 			    </RadioGroup>
 			
 			<TableLayout
