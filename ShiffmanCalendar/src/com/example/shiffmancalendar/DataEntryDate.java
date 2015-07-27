@@ -59,6 +59,16 @@ public class DataEntryDate extends Activity {
 		values.put(DBHelper.KEY_PID, id);
 		values.put(DBHelper.KEY_STUDY, study);
 		values.put(DBHelper.KEY_SESSION, session);
+		values.put(DBHelper.KEY_DATE, "");
+		values.put(DBHelper.KEY_CIG_COUNT, "");
+		values.put(DBHelper.KEY_NRES_CIG_COUNT, "");
+		values.put(DBHelper.KEY_GUM_COUNT, "");
+		values.put(DBHelper.KEY_OTHER_COUNT, "");
+		values.put(DBHelper.KEY_OTHER_FREE_1, "");
+		values.put(DBHelper.KEY_OTHER_FREE_2, "");
+		values.put(DBHelper.KEY_OTHER_TYPE_1, "");
+		values.put(DBHelper.KEY_OTHER_TYPE_2, "");
+		
 		
 		return values;
 	}
