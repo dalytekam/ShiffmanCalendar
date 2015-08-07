@@ -71,10 +71,11 @@ public class DataEntryDatePhase3 extends DataEntryDate {
 		int study = prefs.getInt("phase", 3);
 		if (study == 2) { // LONIC Visit 1
 			TableRow row = (TableRow) findViewById(R.id.tableRow2);
-			TextView cigLabel = (TextView) findViewById(R.id.field1Text);
+			TextView cigLabel = (TextView) findViewById(R.id.field7Text);
 			row.setVisibility(View.GONE);
 			row.setEnabled(false);
 			cigLabel.setText("Number of cigarettes smoked: ");
+			cigs.setText("0");
 		}
 		
 		if (super.existingData != null) {

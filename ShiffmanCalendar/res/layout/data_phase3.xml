@@ -43,7 +43,7 @@
 	    android:layout_gravity="center" >
 				    
 		    <TableRow
-	        android:id="@+id/tableRow1"
+	        android:id="@+id/tableRow2"
 	        android:layout_width="fill_parent"
 	        android:layout_height="0dp"
 	        android:layout_weight="1"
@@ -71,7 +71,7 @@
 		    </TableRow>
 		    
 		    <TableRow
-	        android:id="@+id/tableRow2"
+	        android:id="@+id/tableRow1"
 	        android:layout_width="fill_parent"
 	        android:layout_height="0dp"
 	        android:layout_weight="1"
