@@ -222,11 +222,17 @@ public class DataExport extends Activity {
 		// add data
 		for (ContentValues values: data) {
 			for (String col: columns) {
-				if (col.equalsIgnoreCase("date") || col.equalsIgnoreCase("date_entered")) {
+				if (col.equalsIgnoreCase("date")) {
     				long date = values.getAsLong(col);
     				Calendar cal = Calendar.getInstance();
     				cal.setTimeInMillis(date);
     				SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+    				sb.append(format1.format(cal.getTime()));
+				} else if (col.equalsIgnoreCase("date_entered")) {
+					long date = values.getAsLong(col);
+    				Calendar cal = Calendar.getInstance();
+    				cal.setTimeInMillis(date);
+    				SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.US);
     				sb.append(format1.format(cal.getTime()));
     			} else {
     				sb.append(values.getAsString(col));
